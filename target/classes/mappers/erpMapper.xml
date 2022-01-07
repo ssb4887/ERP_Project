@@ -113,6 +113,12 @@
 			WHERE pro_name LIKE #{pro_name}
 		</select>
 		
+		<!-- 제품 등록 기능 -->
+		<insert id="addProduct">
+			INSERT INTO PRODUCT
+			VALUES ( #{pro_num},#{pro_name},#{pro_color},#{pro_count},#{pro_note})
+		</insert>
+		
 	
 		<!-- 공급처(Supplier) -->
 		
@@ -142,5 +148,7 @@
 				#{supp_note }
 			 );
 		</insert>
+		
+		
 		
 </mapper>

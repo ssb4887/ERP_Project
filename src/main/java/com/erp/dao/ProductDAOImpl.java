@@ -27,4 +27,10 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<Product> searchProduct(String pro_name) throws Exception {
 		return sqlSession.selectList(SESSION + ".searchProduct", pro_name);
 	}
+
+	@Override
+	public void addProduct(Product product) throws Exception {
+		sqlSession.insert(SESSION + ".addProduct", product);
+		
+	}
 }

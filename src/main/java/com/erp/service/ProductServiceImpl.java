@@ -31,4 +31,11 @@ public class ProductServiceImpl implements ProductService {
 		return dao.searchProduct(pro_name);
 	}
 
+	@Override
+	public void addProductAction(Product product) throws Exception {
+
+		dao.addProduct(product);
+		
+	}
+
 }

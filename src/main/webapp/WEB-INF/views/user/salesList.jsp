@@ -79,11 +79,11 @@
     <div id="contents" style="float: right; width: 88vw; height: 88vh">
       <div>
         <!-- 검색 폼 -->
-        <div style="width: 500px; display: block">
+        <div style="width: 600px; display: block">
           <form style="margin: 5% 0 -5% 4%">
             <!-- 검색어 입력 -->
             <div class="row">
-              <div class="form-group col-sm-6 col-md-6 col-lg-6">
+              <div class="form-group col-sm-4 col-md-4 col-lg-4">
                 <input
                   type="text"
                   name="dept_name"
@@ -119,6 +119,13 @@
                 <button type="button" class="btn btn-danger btn-block">
                   삭제
                 </button>
+              </div>
+              
+              <!-- 제품수정 -->
+              <div class="form-group col-sm-2 col-md-2 col-lg-2">
+              	<button type="button" class="btn btn-warning btn-block">
+              		수정
+              	</button>
               </div>
             </div>
           </form>

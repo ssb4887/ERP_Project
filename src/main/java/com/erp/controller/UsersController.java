@@ -62,6 +62,14 @@ public class UsersController {
 		return pro_list;
 	}
 	
+	// 제품 등록
+	@RequestMapping(value="/addProductAction", method = RequestMethod.POST)
+	public String addProductAction(Product product) throws Exception{
+		
+		pro_service.addProductAction(product);
+		
+		return "redirect:/product";
+	}
 	// --- clients
 	// clients(고객관리)
 	@RequestMapping(value ="/clients", method = RequestMethod.GET)

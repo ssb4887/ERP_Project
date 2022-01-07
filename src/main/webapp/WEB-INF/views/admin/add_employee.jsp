@@ -203,8 +203,6 @@ $(document).ready(function(){
 								style="background-color: #B9D7EA; border: 1px solid #B9D7EA;"
 								data-toggle="modal" data-target="Modal">부서선택</button>
 						</div>
-				
-
 				</div>
 			</div>
 		</div>

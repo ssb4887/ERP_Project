@@ -12,4 +12,7 @@ public interface ProductDAO {
 	
 	//제품 검색하기
 	public List<Product> searchProduct(String pro_name) throws Exception;
+	
+	//제품 등록하기
+	public void addProduct(Product product) throws Exception;
 }
