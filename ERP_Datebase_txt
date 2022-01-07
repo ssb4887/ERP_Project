@@ -67,7 +67,7 @@ CREATE TABLE SUPPLIER (
 	user_num 	VARCHAR(20) 	NOT NULL,
 	user_tel 	VARCHAR(20),
 	supp_type 	VARCHAR(100) 	NOT NULL,
-	sup_note 	TEXT
+	supp_note 	TEXT
 );
 
 
