@@ -20,7 +20,6 @@
 	
 <!-- 제이쿼리  -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<%-- <script src="${path}/resources/js/jquery.js"></script> --%>
 <!-- 기본 CSS -->
 <link rel="stylesheet" href="${path}/resources/css/reset.css" />
 <!-- 네비 CSS -->
@@ -109,6 +108,7 @@ $(document).ready(function(){
 				supp_note	: supp_note
 			},
 			dataType: 'JSON',
+			
 			success : function(data) {
 				$('#addSuppModal').modal('hide');
 				alert('공급처 추가 완료');
@@ -134,8 +134,18 @@ $(document).ready(function(){
 	      				str += '</table>';
 					$('#suppTableList').append(str); 
 					
+					// 완료 후 input 값 빈칸으로 만들기
+					$('#supp_id').val('');
+					$('#supp_name').val('');
+				 	$('#supp_addr').val('');
+					$('#supp_tel').val('');
+					$('#user_num').val('');
+					$('#user_tel').val('');
+					$('#supp_type').val('');
+					$('#supp_note').val('비고');
 			},
 			error : function(){
+				// DB 오류	(PK중복)
 				alert('중복된 공급처 ID는 등록할 수 없습니다!');
 				return;
 			}

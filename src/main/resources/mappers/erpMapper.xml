@@ -45,7 +45,7 @@
 		<!-- 사원등록 -->
 		<insert id = "join">
 		 		INSERT INTO USERS
-		 		VALUES(#{user_num}, SHA2(#{user_pw},256), #{user_name}, #{dept_num}, #{user_tel}, #{user_email}, #{user_add} )
+		 		VALUES(#{user_num}, SHA2(#{user_pw},256), #{user_name}, #{dept_num}, #{user_tel}, #{user_email}, #{user_addr} )
 		</insert>
 		
 		<!-- 유저 이름 검색 -->
@@ -86,8 +86,8 @@
 		<update id = "auth_update">
 			UPDATE DEPARTMENT 
 			SET
-				auth_sales 			= #{auth_sales}, 
-				auth_salesList 		= #{auth_salesList}, 
+				auth_sales 			= 	#{auth_sales}, 
+				auth_salesList 		= 	#{auth_salesList}, 
 				auth_clients 			=  #{auth_clients}, 
 				auth_orders 			=  #{auth_orders}, 
 				auth_supplier 		=  #{auth_supplier}, 
