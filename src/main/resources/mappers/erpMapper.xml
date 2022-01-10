@@ -188,9 +188,9 @@
 				user_num 		= ${user_num}, 
 				user_tel 			= ${user_tel}, 
 				supp_type		= ${supp_type}, 
-				sup_note 		= ${supp_note}
+				supp_note 		= ${supp_note}
 				  
-			WHERE supp_id 	= ${supp_id};
+			WHERE supp_id 	= ${supp_id}
 		</update>
 		
 </mapper>
