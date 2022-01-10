@@ -153,7 +153,7 @@
 		
 		
 		<!-- 공급처 검색 기능(공급처 ID 기준 | 삭제할때 사용) -->
-		<select id="searchSupplier_Del" resultType = "Supplier">
+		<select id="searchSupplier_id" resultType = "Supplier">
 			SELECT *
 			FROM SUPPLIER
 			WHERE supp_id = #{supp_id}
@@ -166,5 +166,31 @@
 			FROM SUPPLIER
 			WHERE supp_id = #{supp_id}
 		</delete>
+		
+		
+		<!-- 공급처ID 를 받아와서 한줄만 수정  -->
+				
+		<!-- 공급처 검색 기능(공급처 ID 기준 | 삭제할때 사용) -->
+		<select id= "getSearchSupplier" resultType = "Supplier">
+			SELECT *
+			FROM SUPPLIER
+			WHERE supp_id = #{supp_id}
+		</select>
+		
+		
+		<!-- 공급처 ID 로 공급처 수정 -->
+		<update id="updateSupllier">
+			UPDATE SUPPLIER 
+			SET 
+				supp_name 	= ${supp_name}, 
+				supp_addr 		= ${supp_addr}, 
+				supp_tel 			= ${supp_tel}, 
+				user_num 		= ${user_num}, 
+				user_tel 			= ${user_tel}, 
+				supp_type		= ${supp_type}, 
+				sup_note 		= ${supp_note}
+				  
+			WHERE supp_id 	= ${supp_id};
+		</update>
 		
 </mapper>

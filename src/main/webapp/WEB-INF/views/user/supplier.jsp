@@ -145,7 +145,6 @@ $(document).ready(function(){
 					$('#supp_note').val('비고');
 			},
 			error : function(){
-				// DB 오류	(PK중복)
 				alert('중복된 공급처 ID는 등록할 수 없습니다!');
 				return;
 			}
@@ -170,16 +169,128 @@ $(document).ready(function(){
 			
 			$('input[name="table_supp_id"]:checked').each(function(){
 				supp_id.push($(this).val());
-				alert(supp_id);
+				
 			});
 			
+			// 삭제 ajax 시작
+			$.ajax({
+				url: './deleteSupplier',
+				type: 'POST',
+				data: {
+					supp_id : supp_id
+				},
+				
+				dataType: "JSON",
+				success : function(data){
+					
+					alert('선택한 공급처 삭제 완료');
+					$('#suppTableList').empty();
+					var str = '';
+						str +='<table  style="width: 85vw; height: auto; text-align: center" class="table table-hover" id="suppTableList" >';
+			          			for(var i = 0; i < data.length; i++) {
+			          				str += '<tr>';
+				          				str += '<td style="width: 2vw; text-align: center; line-height: 30px">';
+				          				str += '<label><input type="checkbox" value="'+data[i].supp_id+'"/></label></td>';
+				          				str += '<td style="width: 6.5vw; text-align: center; line-height: 30px">'+data[i].supp_id+'</td>';
+				          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].supp_name+'</td>';
+				          				str += '<td style="width: 15vw; text-align: center; line-height: 30px">'+data[i].supp_addr+'</td>';
+				          				str += '<td style="width: 9vw; text-align: center; line-height: 30px">'+data[i].supp_tel+'</td>';
+				          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].user_num+'</td>';
+				          				str += '<td style="width: 9vw; text-align: center; line-height: 30px">'+data[i].user_tel+'</td>';
+				          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].supp_type+'</td>';
+				          				str += '<td style="width: 15vw; text-align: center; line-height: 30px">'+data[i].supp_note+'</td>';
+				          				str += '<td style="width: 4.5vw; text-align: center; line-height: 30px">';
+				          				str += '<button type="button" class="btn btn-info btn-block"> 수정</button></td>';
+			          				str += '</tr>';
+									}
+		      				str += '</table>';
+						$('#suppTableList').append(str); 
+					
+				}
 			
+			});
 			
 		}// else
 		
-	
 	});
+
 });
+
+// 수정버튼 눌렀을때 그 줄에 해당하는 supp_id 값 가져오기
+function getSuppID(supp_id) {
+	
+	var supp_id = supp_id;
+	
+	$.ajax({
+		type: 'POST',
+		url: './getSearchSupplier',
+		data: {
+			supp_id: supp_id
+		} ,
+		dataType: "JSON",
+		success: function(data){
+			alert('통신 성공!');
+			console.log(data);
+			alert(data.supp_id);
+			$('#supp_id_up').val(data.supp_id);
+			$('#supp_name_up').val(data.supp_name);
+			$('#supp_addr_up').val(data.supp_addr);
+			$('#supp_tel_up').val(data.supp_tel);
+			$('#user_num_up').val(data.user_num);
+			$('#user_tel_up').val(data.user_tel);
+			$('#supp_type_up').val(data.supp_type);
+			$('#supp_note_up').val(data.supp_note);
+		},
+		error: function(){
+			alert('통신 실패!');
+		}
+		
+			
+	});
+	
+}
+
+
+
+// 수정 ajax 
+
+
+	function updateSupplier() {'#updateSuppAction'
+		
+	var supp_id 		= $('#supp_id_up').val();
+	var supp_name 	= $('#supp_name_up').val();
+	var supp_addr 	= $('#supp_addr_up').val();
+	var supp_tel 		= $('#supp_tel_up').val();
+	var user_num 	= $('#user_num_up').val();
+	var user_tel 		= $('#user_tel_up').val();
+	var supp_type 	= $('#supp_type_up').val();
+	var supp_note 	= $('#supp_note_up').val();
+
+	$.ajax({
+		url: './updateSupllier',
+		type: 'POST',
+		data: {
+			supp_id		: supp_id,
+			supp_name	: supp_name,
+			supp_addr 	: supp_addr,
+			supp_tel 		: supp_tel,
+			user_num 	: user_num,
+			user_tel 		: user_tel,
+			supp_type	: supp_type,
+			supp_note 	: supp_note
+		},
+		dataType : 'JSON',
+		success : function(data){
+			$('#updateSuppModal').modal('hide');
+			alert(data.supp_name + '공급처 수정 완료');
+		},
+		error : function() {
+			alert('수정 실패');
+		}
+		
+	});
+}	
+
 </script>
 
 </head>
@@ -321,7 +432,8 @@ $(document).ready(function(){
 			                ${supp.supp_note}
 			              </td>
 			              <td style="width: 4.5vw; text-align: center; line-height: 30px">
-			                <button type="button" class="btn btn-info btn-block"> 수정</button>
+			                <button type="button" class="btn btn-info btn-block" id = "updateSuppBtn" 
+			                onclick="getSuppID('${supp.supp_id}')" data-toggle="modal" data-target="#updateSuppModal"> 수정</button>
 			              </td>
 			          	</tr>
 					</c:forEach>
@@ -332,7 +444,7 @@ $(document).ready(function(){
     <!-- 테이블 끝 -->
   </div>
   
-  <!-- 공급처 등록 모달  -->
+<!-- 공급처 등록 모달  -->
 <div id="addSuppModal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -424,6 +536,101 @@ $(document).ready(function(){
 	</div>
 </div>
 <!-- 공급처 등록 모달  종료 -->
+  
+  
+  
+<!-- 공급처 수정 모달  -->
+<div id="updateSuppModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		
+			<div class="modal-header">
+				<!-- &times; : 부트스트랩 x 아이콘 만들기 -->
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title" style="text-align: center; font-size: 1.3em">공급처 수정</h4>
+			</div>
+			
+			<div class="modal-body">
+			
+				<!-- 공급처 ID -->
+				<div class="row">
+					<div class="form-group col-sm-12 col-md-12 col-lg-12">
+						<label class="form-group">공급처 ID	</label>
+						<input type="text" class = "form-control" name = "supp_id_up" id ="supp_id_up" readonly>
+					</div>
+				</div>	
+			
+				<!-- 공급처 이름 -->
+				<div class="row">
+					<div class="form-group col-sm-12 col-md-12 col-lg-12">
+						<label class="form-group">공급처 이름</label>
+						<input type="text" class = "form-control" name = "supp_name_up" id ="supp_name_up">
+					</div>
+				</div>	
+				
+				<!-- 공급처 주소 -->
+				<div class="row">
+					<div class="form-group col-sm-12 col-md-12 col-lg-12">
+						<label class="form-group">공급처 주소</label>
+						<input type="text" class = "form-control" name = "supp_addr_up" id ="supp_addr_up">
+					</div>
+				</div>	
+				
+				<!-- 공급처 전화번호 -->
+				<div class="row">
+					<div class="form-group col-sm-12 col-md-12 col-lg-12">
+						<label class="form-group">공급처 전화번호</label>
+						<input type="text" class = "form-control" name = "supp_tel_up" id ="supp_tel_up">
+					</div>
+				</div>	
+				
+				<!-- 담당자(사원 번호)	 -->
+				<div class="row">
+					<div class="form-group col-sm-12 col-md-12 col-lg-12">
+						<label class="form-group">담당자(사원 번호)</label>
+						<input type="text" class = "form-control" name = "user_num_up" id ="user_num_up">
+					</div>
+				</div>	
+				
+				<!-- 담당자 전화번호 -->
+				<div class="row">
+					<div class="form-group col-sm-12 col-md-12 col-lg-12">
+						<label class="form-group">담당자 전화번호</label>
+						<input type="text" class = "form-control" name = "user_tel_up" id ="user_tel_up">
+					</div>
+				</div>	
+				
+				<!-- 공급처 업종 -->
+				<div class="row">
+					<div class="form-group col-sm-12 col-md-12 col-lg-12">
+						<label class="form-group">업종</label>
+						<input type="text" class = "form-control" name = "supp_type_up" id ="supp_type_up">
+					</div>
+				</div>	
+
+				<!-- 공급처 메모 -->
+				<div class="row">
+					<div class="form-group col-sm-12 col-md-12 col-lg-12">
+						<label class="form-group">공급처 메모</label>
+						<!-- textarea 는 .val() 이 아닌 .text()로 값을 받아와야 한다. -->
+						<textarea class="form-control" name="supp_note_up" id="supp_note_up" style="width:100%; height: 15vh; overflow: visible; resize: none">비고</textarea>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-sm-12 col-md-12 col-lg-12">
+						<button type="button" class="btn btn-info btn-block" id ="updateSuppAction"
+							style="background-color: #B9D7EA; border: 1px solid #B9D7EA;"  onclick="updateSupplier()"> 공급처 수정</button>
+					</div>
+				</div>
+				
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+<!-- 공급처 수정 모달  종료 -->
 
 </body>
 </html>
