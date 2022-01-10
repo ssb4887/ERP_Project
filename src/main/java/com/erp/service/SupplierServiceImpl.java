@@ -37,11 +37,28 @@ public class SupplierServiceImpl implements SupplierService {
 	}
 
 	@Override
-	public List<Supplier> searchSupplier_Del(String supp_id) throws Exception {
+	public String searchSupplier_id(String supp_id) throws Exception {
 		
-		return dao.searchSupplier_Del(supp_id);
+		return dao.searchSupplier_id(supp_id);
 	}
 
+	@Override
+	public void deleteSupplier(List<String> supp_id) throws Exception {
+		
+		for(String item: supp_id)
+			dao.deleteSupplier(item);
+			
+	}
 
+	@Override
+	public Supplier getSearchSupplier(String supp_id) throws Exception {
+
+		return dao.getSearchSupplier(supp_id);
+	}
+
+	@Override
+	public void updateSupllier(String supp_id) throws Exception {
+		dao.updateSupllier(supp_id);
+	}
 
 }

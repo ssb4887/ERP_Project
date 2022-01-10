@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.erp.service.ProductService;
@@ -123,16 +124,37 @@ public class UsersController {
 		return supp_service.getSupplierList();
 	}
 	
-	// 공급처 ID 기준으로 리스트 검색(삭제시 사용 기능)
-	@RequestMapping(value="/searchSupplier_Del", method = RequestMethod.POST)
+	// 공급처 ID 기준으로 리스트 삭제
+	@RequestMapping(value="/deleteSupplier", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Supplier> searchSupplier_Del(String supp_id) throws Exception {
+	public List<Supplier> deleteSupplier(@RequestParam(value="supp_id[]") List<String> supp_id) throws Exception {
 		
-		List<Supplier> supp_list = supp_service.searchSupplier_Del(supp_id);
+		supp_service.deleteSupplier(supp_id);
+		
+		List<Supplier> supp_list = supp_service.getSupplierList();
 		
 		return supp_list;
 	}
+
 	
+	// 공급처 수정을 위해 데이터 받아오기(supp_id 기준)	
+	@RequestMapping(value="/getSearchSupplier", method = RequestMethod.POST)
+	@ResponseBody
+	public Supplier getSearchSupplier(Model model, String supp_id) throws Exception {
+		
+		return supp_service.getSearchSupplier(supp_id);
+	}
+	
+	
+	// 공급처 수정 	
+	@RequestMapping(value="/updateSupllier", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateSupllier(String supp_id) throws Exception {
+		
+		supp_service.updateSupllier(supp_id);
+	
+		return "redirect:/supplier";
+	}
 	
 	// --- accounting
 	// accounting (회계)	

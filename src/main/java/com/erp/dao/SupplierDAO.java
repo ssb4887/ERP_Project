@@ -13,5 +13,11 @@ public interface SupplierDAO {
 	
 	public void addSupplier(Supplier supplier) throws Exception;
 	
-	public List<Supplier> searchSupplier_Del(String supp_id) throws Exception;
+	public String searchSupplier_id(String supp_id) throws Exception;
+	
+	public void deleteSupplier(String supp_id) throws Exception;
+	
+	public Supplier getSearchSupplier(String supp_id) throws Exception;
+	
+	public void updateSupllier(String supp_id) throws Exception;
 }
