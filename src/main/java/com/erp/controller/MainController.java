@@ -53,12 +53,12 @@ public class MainController {
 		// user user_num이 admin(관리자계정)	 이면 관리자 페이지로 로그인 후 이동
 		else if(result.getUser_num().equals("admin")) {
 			session.setAttribute("user", users);
-			url = "redirect:/admin/department";
+			url = "redirect:/admin/adminMain";
 		}
 		
 		else {
 			session.setAttribute("user", users);
-			url = "redirect:/user/clients";
+			url = "redirect:/user/userMain";
 		}
 		
 		return url;

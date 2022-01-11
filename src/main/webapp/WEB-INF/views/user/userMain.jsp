@@ -27,6 +27,13 @@
 </head>
 <body>
 <div id="wrap">
+
+     <!-- 상단 bar -->
+     <div id="topBar">
+       <!-- 상단 제목 -->
+       <span>Main	</span>
+     </div>
+
     
     <!-- 유저 네비게이션 -->
     <jsp:include page = "userNav.jsp" />

@@ -12,5 +12,6 @@
 		<typeAlias alias = "CLIENTS" type = "com.erp.vo.Clients" />
 		<typeAlias alias = "ORDERS" type = "com.erp.vo.Orders" />
 		<typeAlias alias = "SALES" type = "com.erp.vo.Sales" />
+		<typeAlias alias = "ACCOUNTING" type = "com.erp.vo.Accounting" />
 	</typeAliases>
 </configuration>

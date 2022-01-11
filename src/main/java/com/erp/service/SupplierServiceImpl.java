@@ -57,8 +57,8 @@ public class SupplierServiceImpl implements SupplierService {
 	}
 
 	@Override
-	public void updateSupplier(String supp_id) throws Exception {
-		dao.updateSupplier(supp_id);
+	public void updateSupplier(Supplier supplier) throws Exception {
+		dao.updateSupplier(supplier);
 	}
 
 }

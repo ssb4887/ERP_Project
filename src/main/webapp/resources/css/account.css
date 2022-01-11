@@ -42,7 +42,7 @@ a:hover, a:active {text-decoration: none; color:#fff; background-color:#B9D7EA;}
 }
 #add_con input {
   width: 100px;
-  height: 23px;
+  height: 25px;
 }
 .acc_search {
   
@@ -58,6 +58,9 @@ a:hover, a:active {text-decoration: none; color:#fff; background-color:#B9D7EA;}
 .acc_search input:focus {
   outline: none;
   border: none;
+  zoom: none;
+    width: 100px;
+  height: 23px;
 }
 
 .acc_search:focus-within {
@@ -107,7 +110,8 @@ a:hover, a:active {text-decoration: none; color:#fff; background-color:#B9D7EA;}
   float: left;
   box-sizing: border-box;
   border-right: 0.5px solid #777;
-  height: 25px;
+  height: 3vh;
+  line-height: 3vh;
   border-bottom: 2px solid #769fcd;
   background-color: #F7FBFC;
 }
@@ -117,7 +121,7 @@ a:hover, a:active {text-decoration: none; color:#fff; background-color:#B9D7EA;}
 .table_con div {
   float: left;
   box-sizing: border-box;
-  border-bottom: 0.5px solid #777;
+  border-bottom:2px solid #769fcd;
   border-right: 0.5px solid #777;
   height: 25px;
 }
@@ -126,7 +130,7 @@ a:hover, a:active {text-decoration: none; color:#fff; background-color:#B9D7EA;}
 }
 .table_con input {
   cursor: pointer;
-  zoom: 1.4;
+  zoom: 1.2;
   margin-top: -2px;
 }
 .selected {

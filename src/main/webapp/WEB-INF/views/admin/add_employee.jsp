@@ -65,7 +65,14 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<div id="wrap">
+<div id="wrap">
+	
+     <!-- 상단 bar -->
+     <div id="topBar">
+       <!-- 상단 제목 -->
+       <span>사원 등록</span>
+     </div>
+	
 	<!-- 유저 네비게이션 -->
     <jsp:include page = "adminNav.jsp" />
 

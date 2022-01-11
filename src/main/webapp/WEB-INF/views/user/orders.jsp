@@ -27,47 +27,17 @@
 </head>
 <body>
 <div id="wrap">
+
+    <!-- 상단 bar -->
+    <div id="topBar">
+      <!-- 상단 제목 -->
+      <span>발주 관리</span>
+    </div>
+
     
     <!-- 유저 네비게이션 -->
     <jsp:include page = "userNav.jsp" />
-    <%--
-      <!-- nav 시작 -->
 
-      <!-- nav bar -->
-      <div id="nav">
-        <!-- nav 상단부분 -->
-        <div class="nav_top">
-          <div class="profile"></div>
-          <span>user</span>
-        </div>
-
-        <!-- nav 하단부분 -->
-        <div class="nav_bottom">
-          <ul class="nav_list">
-            <li><a href="main">ERP_Project</a></li>
-            <li><a href="myPage">마이페이지</a></li>
-            <li><a href="product">제품관리</a></li>
-            <li><a href="salesList">영업관리</a></li>
-            <li><a href="supplier">공급처관리</a></li>
-            <li>
-              <a href="clients">고객관리</a>
-            </li>
-            <li style="background-color: #b9d7ea">
-              <a href="orders">발주관리</a>
-            </li>
-            <li><a href="">회계</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- 상단 bar -->
-      <div id="topBar">
-        <!-- 상단 제목 -->
-        <h2>발주 관리</h2>
-      </div>
-
-    <!-- nav 끝 -->
- --%>
     <!-- contents 부분 -->
     <div id="contents" style="float: right; width: 88vw; height: 88vh">
       <div>

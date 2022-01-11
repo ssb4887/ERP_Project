@@ -3,6 +3,7 @@ package com.erp.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.erp.service.AccService;
 import com.erp.service.ProductService;
 import com.erp.service.SupplierService;
+import com.erp.vo.Accounting;
 import com.erp.vo.Product;
 import com.erp.vo.Supplier;
+import com.erp.vo.Users;
 
 // user (유저 컨트롤러)	
 @Controller
@@ -26,6 +30,9 @@ public class UsersController {
 	
 	@Inject
 	SupplierService supp_service;
+	
+	@Inject
+	AccService acc_service;
 	
 	// userMain(유저 메인)	
 	@RequestMapping(value ="/userMain", method = RequestMethod.GET)
@@ -45,7 +52,6 @@ public class UsersController {
 	// product(제품관리)
 	@RequestMapping(value="/product", method = RequestMethod.GET) 
 	public String product(Model model) throws Exception{
-		
 		
 		List<Product> product_List = pro_service.getProductList();
 		model.addAttribute("product_List",product_List);
@@ -98,10 +104,13 @@ public class UsersController {
 	// --- supplier
 	// supplier (공급처)	
 	@RequestMapping(value ="/supplier", method = RequestMethod.GET)
-	public String supplier(Model model) throws Exception {
+	public String supplier(Model model, HttpSession session, Users users) throws Exception {
+		
+		Users user = (Users) session.getAttribute("users");
 		
 		List<Supplier> supp_list = supp_service.getSupplierList();
 		model.addAttribute("supp_list", supp_list);
+		model.addAttribute("user", user);
 		
 		return "user/supplier";
 	}
@@ -124,7 +133,9 @@ public class UsersController {
 		
 		supp_service.addSupplierAction(supplier);
 		
-		return supp_service.getSupplierList();
+		List<Supplier> supp_list = supp_service.getSupplierList();
+		
+		return supp_list;
 	}
 	
 	// 공급처 ID 기준으로 리스트 삭제
@@ -152,9 +163,9 @@ public class UsersController {
 	// 공급처 수정 	
 	@RequestMapping(value="/updateSupplier", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateSupplier(String supp_id) throws Exception {
+	public String updateSupplier(Supplier supplier) throws Exception {
 		
-		supp_service.updateSupplier(supp_id);
+		supp_service.updateSupplier(supplier);
 	
 		return "0";
 	}
@@ -162,8 +173,22 @@ public class UsersController {
 	// --- accounting
 	// accounting (회계)	
 	@RequestMapping(value ="/accounting", method = RequestMethod.GET)
-	public String accounting(Model model) {
+	public String accounting(Model model) throws Exception {
+		
+		List<Accounting> acc_list = acc_service.getAccList();
+		model.addAttribute("acc_list", acc_list);
+		
 		return "user/accounting";
+	}
+	
+	// 회계 데이터 등록	
+	@RequestMapping(value ="/addAccAction", method = RequestMethod.POST)
+	@ResponseBody
+	public String addAccAction(Accounting accounting) throws Exception {
+		
+		acc_service.addAccAction(accounting);
+		
+		return "0";
 	}
 	
 }

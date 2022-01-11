@@ -30,10 +30,11 @@
           <!-- 오른쪽 텍스트 영역 -->
           <div class="profile">
             <div class="pofile_user">
-       		  <span class="user_num">SAL-001</span>
-       		  <span class="user_name">홍길동 </span>
+       		  <span class="user_num">${user.user_num}</span>
+       		  <span class="user_name">${user.user_name }</span>
        		</div>
           	<a class="logout_btn" href="/logout">로그아웃</a>
+          	<a class="mypage_btn" href="../user/userMain">유저페이지</a>
           </div>
         </div>
 

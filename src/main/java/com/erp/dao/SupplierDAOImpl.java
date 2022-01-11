@@ -49,8 +49,8 @@ public class SupplierDAOImpl implements SupplierDAO {
 	}
 
 	@Override
-	public void updateSupplier(String supp_id) throws Exception {
-		sqlSession.update(SESSION + ".updateSupplier", supp_id);
+	public void updateSupplier(Supplier supplier) throws Exception {
+		sqlSession.update(SESSION + ".updateSupplier", supplier);
 	}
 
 	

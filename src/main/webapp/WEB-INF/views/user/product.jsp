@@ -126,42 +126,16 @@
 </head>
 <body>
 	<div id="wrap">
+	
+		<!-- 상단 bar -->
+		<div id="topBar">
+		  <!-- 상단 제목 -->
+		  <span>제품 관리</span>
+		</div>
+	
 		<!-- 유저 네비게이션 -->
 		<jsp:include page="userNav.jsp" />
-		<%--
-      <!-- nav bar -->
-      <div id="nav">
-        <!-- nav 상단부분 -->
-        <div class="nav_top">
-          <div class="profile"></div>
-          <span>user</span>
-        </div>
-
-        <!-- nav 하단부분 -->
-        <div class="nav_bottom">
-          <ul class="nav_list">
-            <li><a href="main ">ERP_Project</a></li>
-            <li><a href="myPage ">마이페이지</a></li>
-            <li style="background-color: #b9d7ea">
-              <a href="product ">제품관리</a>
-            </li>
-            <li><a href="salesList ">영업관리</a></li>
-            <li><a href="supplier ">공급처관리</a></li>
-            <li><a href="clients ">고객관리</a></li>
-            <li><a href="orders ">발주관리</a></li>
-            <li><a href="">회계</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- 상단 bar -->
-      <div id="topBar">
-        <!-- 상단 제목 -->
-        <h2>제품관리</h2>
-      </div>
-  
-    <!-- nav 끝 -->
- --%>
+		
 		<!-- contents 부분 -->
 		<div id="contents" style="float: right; width: 88vw; height: 88vh">
 			<div>
@@ -208,85 +182,80 @@
 					</form>
 				</div>
 
-<!-- 제품 등록 모달  -->
+				<!-- 제품 등록 모달  -->
+				<div id="addProModal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							
+							<div class="modal-header">
+								<!-- &times; : 부트스트랩 x 아이콘 만들기 -->
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">제품 등록</h4>
+							</div>
 						
-							<div id="addProModal" class="modal fade" role="dialog">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										
-										<div class="modal-header">
-											<!-- &times; : 부트스트랩 x 아이콘 만들기 -->
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
-											<h4 class="modal-title">제품 등록</h4>
-										</div>
-									
-										<div class="modal-body">
+							<div class="modal-body">
 
-											<!-- 공급처 ID -->
-											<div class="row">
-												<div class="form-group col-sm-12 col-md-12 col-lg-12">
-													<label class="form-group">제품 번호</label> <input
-														type="text" class="form-control" name="pro_num" id="pro_num">
-												</div>
-											</div>
+								<!-- 공급처 ID -->
+								<div class="row">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12">
+										<label class="form-group">제품 번호</label> <input
+											type="text" class="form-control" name="pro_num" id="pro_num">
+									</div>
+								</div>
 
-											<!-- 공급처 주소 -->
-											<div class="row">
-												<div class="form-group col-sm-12 col-md-12 col-lg-12">
-													<label class="form-group">제품명</label> <input type="text"
-														class="form-control" name="pro_name" id="pro_name">
-												</div>
-											</div>
+								<!-- 공급처 주소 -->
+								<div class="row">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12">
+										<label class="form-group">제품명</label> <input type="text"
+											class="form-control" name="pro_name" id="pro_name">
+									</div>
+								</div>
 
-											<!-- 공급처 전화번호 -->
-											<div class="row">
-												<div class="form-group col-sm-12 col-md-12 col-lg-12">
-													<label class="form-group">색상</label> <input
-														type="text" class="form-control" name="pro_color" id="pro_color">
-												</div>
-											</div>
+								<!-- 공급처 전화번호 -->
+								<div class="row">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12">
+										<label class="form-group">색상</label> <input
+											type="text" class="form-control" name="pro_color" id="pro_color">
+									</div>
+								</div>
 
-											<!-- 담당자(사원 번호)	 -->
-											<div class="row">
-												<div class="form-group col-sm-12 col-md-12 col-lg-12">
-													<label class="form-group">재고수량</label> <input
-														type="text" class="form-control" name="pro_count" id="pro_count">
-												</div>
-											</div>
+								<!-- 담당자(사원 번호)	 -->
+								<div class="row">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12">
+										<label class="form-group">재고수량</label> <input
+											type="text" class="form-control" name="pro_count" id="pro_count">
+									</div>
+								</div>
 
-											<!-- 공급처 메모
-											<div class="row">
-												<div class="form-group col-sm-12 col-md-12 col-lg-12">
-												<label class="form-group">공급처 메모</label>
-												<input type="text" class = "form-control" name = "" id ="">
-												</div>
-											</div>	 -->
+								<!-- 공급처 메모
+								<div class="row">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12">
+									<label class="form-group">공급처 메모</label>
+									<input type="text" class = "form-control" name = "" id ="">
+									</div>
+								</div>	 -->
 
-											<div class="row">
-												<div class="form-group col-sm-12 col-md-12 col-lg-12">
-													<label class="form-group">제품 메모</label>
-													<!-- textarea 는 .val() 이 아닌 .text()로 값을 받아와야 한다. -->
-													<textarea class="form-control" name="pro_note" id="pro_note"
-														style="width: 100%; height: 15vh; overflow: visible; resize: none" placeholder="비고"></textarea>
-												</div>
-											</div>
+								<div class="row">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12">
+										<label class="form-group">제품 메모</label>
+										<!-- textarea 는 .val() 이 아닌 .text()로 값을 받아와야 한다. -->
+										<textarea class="form-control" name="pro_note" id="pro_note"
+											style="width: 100%; height: 15vh; overflow: visible; resize: none" placeholder="비고"></textarea>
+									</div>
+								</div>
 
-											<div class="row">
-												<div class="form-group col-sm-12 col-md-12 col-lg-12">
-													<button type="button" class="btn btn-info btn-block" id="addProAction"
-														style="background-color: #B9D7EA; border: 1px solid #B9D7EA;">제품 등록</button>
-												</div>
-											</div>
-										</div>
-										
+								<div class="row">
+									<div class="form-group col-sm-12 col-md-12 col-lg-12">
+										<button type="button" class="btn btn-info btn-block" id="addProAction"
+											style="background-color: #B9D7EA; border: 1px solid #B9D7EA;">제품 등록</button>
 									</div>
 								</div>
 							</div>
-							<!-- 제품 등록 모달  종료 --> 
-
-
-
-
+							
+						</div>
+					</div>
+				</div>
+				<!-- 제품 등록 모달  종료 --> 
 
 				<!-- 테이블 항목 -->
 				<div class="table-responsive"

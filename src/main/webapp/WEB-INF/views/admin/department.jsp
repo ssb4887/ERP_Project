@@ -23,10 +23,6 @@
 <!-- search_dept - JS파일 -->
 <%-- <script src="${path}/resources/js/search_dept.js"></script> --%>
 <script>
-/**
- *  사원 관리 페이지 JS
- */
-
 
 $(document).ready(function() {	
 		
@@ -304,6 +300,13 @@ $(document).ready(function() {
 
 <body>
 <div id="wrap">
+
+    <!-- 상단 bar -->
+    <div id="topBar">
+      <!-- 상단 제목 -->
+      <span>부서 관리</span>
+    </div>
+
    	<!-- 유저 네비게이션 -->
     <jsp:include page = "adminNav.jsp" />
 

@@ -29,10 +29,18 @@
           <!-- 오른쪽 텍스트 영역 -->
           <div class="profile">
             <div class="pofile_user">
-       		  <span class="user_num">SAL-001</span>
-       		  <span class="user_name">홍길동 </span>
+       		  <span class="user_num">${user.user_num}</span>
+       		  <span class="user_name">${user.user_name} 님</span>
        		</div>
-          	<a class="mypage_btn" href="myPage">마이페이지</a>
+       		
+          	<c:if test="${user.user_num != admin}">
+          		<a class="mypage_btn" href="myPage">마이페이지</a>
+          	</c:if>
+          	
+          	<c:if test="${user.user_num == admin}">
+          		<a class="mypage_btn" href="adminMain">관리자 페이지</a>
+          	</c:if>
+          	
           	<a class="logout_btn" href="/logout">로그아웃</a>
           </div>
         </div>
@@ -49,12 +57,6 @@
             <li><a id="accountingNavItem" href="accounting">회계</a></li>
           </ul>
         </div>
-      </div>
-
-      <!-- 상단 bar -->
-      <div id="topBar">
-        <!-- 상단 제목 -->
-        <h2>USER PAGE</h2>
       </div>
 
   </body>
