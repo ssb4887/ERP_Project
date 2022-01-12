@@ -79,6 +79,7 @@ CREATE TABLE ACCOUNTING (
 	acc_payment 	VARCHAR(20)	NOT NULL,
 	acc_occdate 	DATE 		NOT NULL,
 	acc_location	VARCHAR(100)	NOT NULL,
+	acc_writer	VARCHAR(20)	NOT NULL,
 	acc_note 	TEXT
 );
 
