@@ -284,32 +284,30 @@ function getSuppID(supp_id) {
 			supp_note 	: supp_note,
 			supp_id		: supp_id
 		},
-		success : function(){
+		dataType: 'JSON',
+		success : function(data){
 	         $('#updateSuppModal').modal('hide');
 	         alert(supp_name + ' 공급처 수정 완료');
-	         
-				
-				alert('선택한 공급처 삭제 완료');
 				
 				$('#suppTableList').empty();
 				var str = '';
 				str +='<table  style="width: 85vw; height: auto; text-align: center" class="table table-hover" id="suppTableList" >';
-       			for(var i = 0; i < data.length; i++) {
-       				str += '<tr>';
-	          				str += '<td style="width: 2vw; text-align: center; line-height: 30px">';
-	          				str += '<label><input type="checkbox" value="'+data[i].supp_id+'"/></label></td>';
-	          				str += '<td style="width: 6.5vw; text-align: center; line-height: 30px">'+data[i].supp_id+'</td>';
-	          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].supp_name+'</td>';
-	          				str += '<td style="width: 15vw; text-align: center; line-height: 30px">'+data[i].supp_addr+'</td>';
-	          				str += '<td style="width: 9vw; text-align: center; line-height: 30px">'+data[i].supp_tel+'</td>';
-	          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].user_num+'</td>';
-	          				str += '<td style="width: 9vw; text-align: center; line-height: 30px">'+data[i].user_tel+'</td>';
-	          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].supp_type+'</td>';
-	          				str += '<td style="width: 15vw; text-align: center; line-height: 30px">'+data[i].supp_note+'</td>';
-	          				str += '<td style="width: 4.5vw; text-align: center; line-height: 30px">';
-	          				str += '<button type="button" class="btn btn-info btn-block" id = "updateSuppBtn"';
-	          				str += 'onclick="getSuppID('+data[i].supp_id+')" data-toggle="modal" data-target="#updateSuppModal"> 수정</button></td>';
-   					str += '</tr>';
+       				for(var i = 0; i < data.length; i++) {
+	       				str += '<tr>';
+		          				str += '<td style="width: 2vw; text-align: center; line-height: 30px">';
+		          				str += '<label><input type="checkbox" value="'+data[i].supp_id+'"/></label></td>';
+		          				str += '<td style="width: 6.5vw; text-align: center; line-height: 30px">'+data[i].supp_id+'</td>';
+		          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].supp_name+'</td>';
+		          				str += '<td style="width: 15vw; text-align: center; line-height: 30px">'+data[i].supp_addr+'</td>';
+		          				str += '<td style="width: 9vw; text-align: center; line-height: 30px">'+data[i].supp_tel+'</td>';
+		          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].user_num+'</td>';
+		          				str += '<td style="width: 9vw; text-align: center; line-height: 30px">'+data[i].user_tel+'</td>';
+		          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].supp_type+'</td>';
+		          				str += '<td style="width: 15vw; text-align: center; line-height: 30px">'+data[i].supp_note+'</td>';
+		          				str += '<td style="width: 4.5vw; text-align: center; line-height: 30px">';
+		          				str += '<button type="button" class="btn btn-info btn-block" id = "updateSuppBtn"';
+		          				str += 'onclick="getSuppID('+data[i].supp_id+')" data-toggle="modal" data-target="#updateSuppModal">수정</button></td>';
+	   					str += '</tr>';
 						}
 	  				str += '</table>';
 				$('#suppTableList').append(str); 

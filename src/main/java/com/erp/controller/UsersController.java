@@ -163,11 +163,13 @@ public class UsersController {
 	// 공급처 수정 	
 	@RequestMapping(value="/updateSupplier", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateSupplier(Supplier supplier) throws Exception {
+	public List<Supplier> updateSupplier(Supplier supplier) throws Exception {
 		
 		supp_service.updateSupplier(supplier);
+		
+		List<Supplier> supp_list = supp_service.getSupplierList();
 	
-		return "0";
+		return supp_list;
 	}
 	
 	// --- accounting
