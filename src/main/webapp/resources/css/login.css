@@ -1,61 +1,89 @@
-#wrap {ㅁ
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@charset "UTF-8";
+@import url(//fonts.googleapis.com/earlyaccess/kopubbatang.css);
+
+.kopubbatang * {
+    font-family: 'KoPub Batang', serif;
 }
 
-#login_box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 500px;
-  height: 400px;
-  background-color: #d6e6f2;
-  border-radius: 10px;
-  text-align: center;
+body{
+    width: 100%;
+    height: 100vh;
 }
-#login_box h3 {
-  font-family: "Segoe UI";
-  font-size: 50px;
-  margin: 30px 0;
-}
-#login_box div {
-  width: 400px;
-  height: 50px;
-  margin: 15px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 10px;
+#wrap{
+    width: 100vw;
+    height: 100vh;
+  
+    background-position: center top;
 }
 
-#login_box div i {
-  margin-left: 10px;
-  font-size: 25px;
+#login_box{
+    margin: 0 auto;
+    width: 40vw;
+    height: 100vh;
 }
-#login_box div input {
-  width: 350px;
-  height: 50px;
-  margin-left: 20px;
-  padding: 0;
-  border: 0;
+
+.login_logo{
+    float: left;
+    text-align: center;
+    margin-top: 10vh;
+    width: 40vw;
 }
-#login_box div input:focus {
-  outline: none;
+
+#login_box h4{
+    display: inline-block;
+    margin-top: 10vh;
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    font-family: 'KoPub Batang', serif;
+    color: #f7fbfc;
 }
-#login_box div:focus-within {
-  outline: 2px solid #769fcd;
-  border-radius: 3px;
+.login_id input{
+    width: 40vw;
+    height: 5vh;
+    border: none;
+    border-bottom: 0.5vh solid #f7fbfc;
+    color: #fff;
+    letter-spacing: 0.1rem;
+    outline: none;
+    font-size: 2rem;
+    margin-top: 2vh;
+    background-color:transparent;
 }
-#login_btn {
-  width: 400px;
-  height: 50px;
-  margin: 15px 0;
-  padding: 0;
-  border: 0;
-  border-radius: 10px;
-  background-color: #769fcd;
+.login_pw input{
+	    width: 40vw;
+    height: 5vh;
+    border: none;
+    border-bottom: 0.5vh solid #f7fbfc;
+    color: #fff;
+    letter-spacing: 0.1rem;
+    outline: none;
+    font-size: 2rem;
+    margin-top: 2vh;
+    background-color:transparent;
+}
+#login_box input:focus{
+    border-bottom: 0.5vh solid #769fcd;
+}
+
+/* input box 크롬 자동완성 제어 */
+input:-webkit-autofill { -webkit-box-shadow: 0 0 0 30px none inset ; -webkit-text-fill-color: #fff; }
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active { transition: background-color 5000s ease-in-out 0s; }
+
+#login_btn{
+    margin-top: 8vh;
+    margin-left: 5vw;
+    width: 30vw;
+    height: 6vh;
+    font-size: 1.5rem;
+    font-family: 'KoPub Batang', serif;
+    letter-spacing: 0.5rem;
+    border: none;
+    border-radius: 3px;
+    background-color: #769fcd;
+    color: #f7fbfc;
+    cursor: pointer;
+}
+#login_btn:hover{
+    background-color: #769fcd;
+    color: #444;
 }

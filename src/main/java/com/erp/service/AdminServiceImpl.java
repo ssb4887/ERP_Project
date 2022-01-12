@@ -80,7 +80,18 @@ public class AdminServiceImpl implements AdminService {
 		
 		dept_name = "%" + dept_name + "%";
 		
-		return dao.serachDept(dept_name);
+		return dao.searchDept(dept_name);
+	}
+
+	@Override
+	public List<Department> searchAuthTable(Department department) throws Exception {
+		return dao.searchAuthTable(department);
+	}
+
+	@Override
+	public void auth_updateAction(Department department) throws Exception {
+		// 권한 수정 기능
+		dao.auth_update(department);
 	}
 
 

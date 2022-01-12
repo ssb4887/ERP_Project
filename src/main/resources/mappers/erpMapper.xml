@@ -12,6 +12,7 @@
 				AND user_pw 		= SHA2(#{user_pw}, 256)		
 		</select>
 		
+		<!-- 관리자 페이지 SQL -->
 		
 		<!-- 부서 검색 -->
 		<select id = "getDeptList" resultType = "Department">
@@ -44,7 +45,7 @@
 		<!-- 사원등록 -->
 		<insert id = "join">
 		 		INSERT INTO USERS
-		 		VALUES(#{user_num}, SHA2(#{user_pw},256), #{user_name}, #{dept_num}, #{user_tel}, #{user_email}, #{user_add} )
+		 		VALUES(#{user_num}, SHA2(#{user_pw},256), #{user_name}, #{dept_num}, #{user_tel}, #{user_email}, #{user_addr} )
 		</insert>
 		
 		<!-- 유저 이름 검색 -->
@@ -57,7 +58,7 @@
 		
 		<!-- 부서 추가 -->
 		<insert id = "addDept">
-				INSERT INTO DEPARTMENT
+				INSERT INTO DEPARTMENT(dept_num, dept_name, dept_tel)
 				VALUES(#{dept_num}, #{dept_name}, #{dept_tel})
 		</insert>
 		
@@ -81,5 +82,135 @@
 				WHERE dept_name LIKE #{dept_name}
 		</select>
 		
+		<!-- 부서 권한 수정 -->
+		<update id = "auth_update">
+			UPDATE DEPARTMENT 
+			SET
+				auth_sales 			= 	#{auth_sales}, 
+				auth_salesList 		= 	#{auth_salesList}, 
+				auth_clients 			=  #{auth_clients}, 
+				auth_orders 			=  #{auth_orders}, 
+				auth_supplier 		=  #{auth_supplier}, 
+				auth_product 		=  #{auth_product}, 
+				auth_accounting 	=  #{auth_accounting}
+			WHERE dept_num =  #{dept_num};
+		</update>
+
+		
+		
+		<!-- 제품(Product) -->
+		
+		<!-- 제품 리스트 불러오기 기능 -->
+		<select id="getProductList" resultType= "Product">
+			SELECT *
+			FROM PRODUCT
+		</select>
+		
+		<!-- 제품  검색 기능(제품명 기준) -->
+		<select id="searchProduct" resultType= "Product">
+			SELECT *
+			FROM PRODUCT
+			WHERE pro_name LIKE #{pro_name}
+		</select>
+		
+		<!-- 제품 등록 기능 -->
+		<insert id="addProduct">
+			INSERT INTO PRODUCT
+			VALUES ( #{pro_num},#{pro_name},#{pro_color},#{pro_count},#{pro_note})
+		</insert>
+	
+	
+		<!-- 공급처(Supplier) -->
+		
+		<!-- 공급처 리스트 불러오기 기능 -->
+		<select id = "getSupplierList" resultType = "Supplier">
+			SELECT *
+			FROM SUPPLIER
+		</select>
+		
+	
+		<!-- 공급처 검색 기능(공급처 명 기준) -->
+		<select id="searchSupplier" resultType = "Supplier">
+			SELECT *
+			FROM SUPPLIER
+			WHERE supp_name LIKE #{supp_name}
+		</select>
+		
+		
+		<!-- 공급처 등록 기능 -->
+		<insert id = "addSupplier">
+			 INSERT INTO SUPPLIER VALUES(
+			 	#{supp_id},
+			 	#{supp_name},
+				#{supp_addr},
+				#{supp_tel},
+				#{user_num},
+				#{user_tel},
+				#{supp_type},
+				#{supp_note}
+			 );
+		</insert>
+		
+		
+		<!-- 공급처 검색 기능(공급처 ID 기준 | 삭제할때 사용) -->
+		<select id="searchSupplier_id" resultType = "Supplier">
+			SELECT *
+			FROM SUPPLIER
+			WHERE supp_id = #{supp_id}
+		</select>
+		
+		
+		<!-- 공급처 삭제 기능 -->
+		<delete id="deleteSupplier">
+			DELETE
+			FROM SUPPLIER
+			WHERE supp_id = #{supp_id}
+		</delete>
+		
+		
+		<!-- 공급처ID 를 받아와서 한줄만 수정  -->
+				
+		<!-- 공급처 검색 기능(공급처 ID 기준 | 삭제할때 사용) -->
+		<select id= "getSearchSupplier" resultType = "Supplier">
+			SELECT *
+			FROM SUPPLIER
+			WHERE supp_id = #{supp_id}
+		</select>
+		
+		
+		<!-- 공급처 ID 로 공급처 수정 -->
+		<update id="updateSupplier">
+			UPDATE SUPPLIER 
+			SET
+				supp_name 	= #{supp_name}, 
+				supp_addr 		= #{supp_addr}, 
+				supp_tel 			= #{supp_tel}, 
+				user_num 		= #{user_num}, 
+				user_tel 			= #{user_tel}, 
+				supp_type		= #{supp_type}, 
+				supp_note 		= #{supp_note}
+				  
+			WHERE supp_id 	= #{supp_id}
+		</update>
+		
+		<!-- 회계 등록 기능 -->
+		<insert id="addAccAction">
+			INSERT INTO ACCOUNTING VALUES(
+					0,
+					#{acc_payment},
+					#{acc_ctg}, 
+					#{acc_occdate},
+					#{acc_amount},
+					#{acc_location},
+					#{acc_note}
+			);
+		</insert>
+		
+		
+		<!-- 회계 데이터 리스트 받아오기 -->
+		<select id="getAccList" resultType="Accounting">
+			SELECT *
+			FROM ACCOUNTING
+		</select>
 		
 </mapper>

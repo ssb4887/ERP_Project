@@ -25,25 +25,28 @@
 </head>
 
   <body>
-    <div id="wrap">
-        <form method = "POST" action = "./loginAction">
-        <div id="login_box" style="margin-top: 20%;">
-        <h3>LOGO</h3>
-        
-        <div>
-          <i class="fas fa-user"> </i>
-          <input type="text" placeholder="사원번호" name = "user_num"/>
+  	
+    <div id="wrap" style=" background-image: url(${path}/resources/images/login_bgimg.png);" >
+    <form method = "POST" action = "./loginAction">
+        <div id="login_box">
+            <h1 class="login_logo"><img src="${path}/resources/images/login_logo.png" alt=""></h1>
+            <div class="login_id">
+                <h4>Employee number</h4>
+                <div><input type="text" name="user_num"></div>
+            </div>
+            <div class="login_pw">
+                <h4>PassWord</h4>
+                <div><input type="password" name="user_pw"></div>
+            </div>
+            <input type="submit" id="login_btn" value="LOGIN"/>
         </div>
-        <div>
-          <i class="fas fa-lock"></i>
-          <input type="password" placeholder="비밀번호" name = "user_pw"/>
-        </div>
-
-        <input type="submit" id="login_btn" value="로그인" />
-        
-        
-      </div>
-      </form>
+    </form>
     </div>
   </body>
+  <script>
+	$(document).ready(function(){
+		var msg = '${msg}';
+		if(msg != null && msg != '') alert(msg);
+	});
+</script>
 </html>

@@ -9,7 +9,9 @@ public interface AdminService {
 	public Users loginAction(Users users) throws Exception;
 	
 	public List<Department> getDeptList() throws Exception;
+	
 	public String makeUser_num(String dept_num) throws Exception;
+	
 	public Department getDepartment(String dept_num) throws Exception;
 	
 	public List<Users> getUsersList() throws Exception;
@@ -25,4 +27,8 @@ public interface AdminService {
 	public void DeleteDeptAction(Department department) throws Exception;
 	
 	public List<Department> searchDeptAction(String dept_name) throws Exception;
+	
+	public List<Department> searchAuthTable(Department department) throws Exception;
+	
+	public void auth_updateAction(Department department) throws Exception;
 }

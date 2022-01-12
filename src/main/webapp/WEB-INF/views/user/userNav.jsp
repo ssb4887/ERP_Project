@@ -5,60 +5,71 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ERP Project</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
     <!-- 기본 CSS -->
     <link rel="stylesheet" href="${path}/resources/css/reset.css" />
+
     <!-- 네비 CSS -->
     <link rel="stylesheet" href="${path}/resources/css/erpNav.css" />
+
     <!-- 부트스트랩 CSS -->
     <link rel="stylesheet" href="${path}/resources/css/bootstrap/bootstrap.css" />
     <link rel="stylesheet" href="${path}/resources/css/bootstrap/custom.css" />
-    <!-- 제이쿼리  -->
-    <script src="${path}/resources/js/jquery.js"></script>
-
+	
 </head>
 
   <body>
-    <div id = "wrap">
-    <!-- nav 시작 -->
-       
-      <!-- nav bar -->
-      <div id = "nav">
+      <div id="nav">
         <!-- nav 상단부분 -->
         <div class="nav_top">
-          <div class = "profile"></div>
-          <span>user</span>
+        	<!-- 로고 이미지 -->
+          <div class="logo">
+            <img src="${path}/resources/images/logo.png" alt="" />
+          </div>
+          <!-- 오른쪽 텍스트 영역 -->
+          <div class="profile">
+            <div class="pofile_user">
+       		  <span class="user_num">${user.user_num}</span>
+       		  <span class="user_name">${user.user_name} 님</span>
+       		</div>
+       		
+          	<c:if test="${user.user_num != admin}">
+          		<a class="mypage_btn" href="myPage">마이페이지</a>
+          	</c:if>
+          	
+          	<c:if test="${user.user_num == admin}">
+          		<a class="mypage_btn" href="adminMain">관리자 페이지</a>
+          	</c:if>
+          	
+          	<a class="logout_btn" href="/logout">로그아웃</a>
+          </div>
         </div>
 
         <!-- nav 하단부분 -->
         <div class="nav_bottom">
           <ul class="nav_list">
-            <li>ERP_Project</li>
-            <li>마이페이지</li>
-            <li>제품관리</li>
-            <li>영업관리</li>
-            <li>공급처관리</li>
-            <li>고객관리</li>
-            <li>발주관리</li>
-            <li>회계</li>
+            <li><a id="mainNavItem" href="userMain">ERP_Program</a></li>
+            <li><a id="productNavItem" href="product">제품관리</a></li>
+            <li><a id="salesListNavItem" href="salesList">영업관리</a></li>
+            <li><a id="supplierNavItem" href="supplier">공급처관리</a></li>
+            <li><a id="clientsNavItem" href="clients">고객관리</a></li>
+            <li><a id="ordersNavItem" href="orders">발주관리</a></li>
+            <li><a id="accountingNavItem" href="accounting">회계</a></li>
           </ul>
         </div>
-      
-
-        <!-- 상단 bar -->
-        <div id = "topBar">
-          <!-- 상단 제목 -->
-          <h2>제목적는칸</h2>
-        </div>
       </div>
-      <!-- nav 끝 -->    
-    
 
-      <!-- contents 부분 -->
-      <div id="contents" style="float: right; width: 88%; height: 100%; background-color: #ECFCFF;"> 
-        <!-- 내용적는 부분 -->
-      </div>
-   </div>
   </body>
+      <script>
+      $(document).ready(function () {
+      	var url = window.location.pathname;
+      	if(url == '/userMain') $('#mainNavItem').addClass('on');
+      	else if(url == 'user/product') $('#productNavItem').addClass('on');
+      	else if(url == 'user/salesList') $('#salesListNavItem').addClass('on');
+      	else if(url == 'user/supplier') $('#supplierNavItem').addClass('on');
+      	else if(url == 'user/clients') $('#clientsNavItem').addClass('on');
+      	else if(url == 'user/orders') $('#ordersNavItem').addClass('on');
+      	else if(url == 'user/accounting') $('#accountingNavItem').addClass('on');
+      });
+      </script>
 </html>

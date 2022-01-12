@@ -1,87 +1,96 @@
 ﻿@charset "UTF-8";
 
 #wrap {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
   position: relative;
 }
 
-#topBar {
-  float: right;
-  width: 100%;
-  height: 100px;
-  border-bottom: 3px solid #769fcd;
-  box-sizing: border-box;
-  background-color: #fff;
-  line-height: 100px;
-}
 
-#topBar > span {
-  font-size: 2em;
-  margin: 2% 0 0 13%;
-  font-weight: 700;
-}
 
 #nav {
   position: fixed;
   top: 0;
   left: 0;
-  width: 12%;
-  height: 100%;
-  border-right: 3px solid #769fcd;
+  width: 12vw;
+  height: 100vh;
+  border-right: 0.3rem solid #769fcd;
   box-sizing: border-box;
   z-index: 9999;
   background-color: #fff;
 }
 #nav .nav_top {
-  width: 100%;
-  height: 100px;
+  width: 12vw;
+  height: 12vh;
   border-bottom: 3px solid #769fcd;
   box-sizing: border-box;
 }
 
-#nav .profile {
+.logo {
   float: left;
-  width: 60px;
-  height: 60px;
-  border: 1px solid #b9d7ea;
+  width: 3.7vw;
+  height:11vh;
+  padding: 1.6vh 0 0 0.2vw;
   box-sizing: border-box;
-  border-radius: 50%;
-  margin: 7% 0 0 7%;
 }
 
-#nav > div span {
-  float: right;
-  margin: 13% 15% 0 0;
-  font-size: 15px;
-  color: #b9d7ea;
+.pofile_user{
+  float: left;
+  width: 8vw;
 }
+.profile span {
+  float: left;
+  margin: 3vh 0 0.3vh 0.6vw;
+  font-size: 1.5rem;
+  color:#777;
+}
+.profile a{
+  font-size: 1.1rem;
+  text-decoration: underline;
+  text-underline-position: under;
+  margin-left: 0.6vw;
+}
+.mypage_btn{
+	color: #769fcd;
+}
+.logout_btn{
+	color: #e98a72;
+}
+
 
 #nav .nav_bottom {
-  width: 100%;
-  height: 90%;
+  width: 11.8vw;
+  height: 87vh;
 }
-#nav .nav_list > li {
+#nav .nav_list > li >a {
   width: 100%;
-  height: 40px;
+  height: 5vh;
   text-align: center;
-  line-height: 40px;
+  line-height: 5vh;
   border-bottom: 2px solid #769fcd;
   box-sizing: border-box;
-}
-
-#nav .nav_list > li > a {
   color: #444;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: normal;
+  font-size: 1.5rem;
   text-decoration: none;
   display: block;
+  font-family: 'NotoSerifKR';
 }
+#nav .nav_list > li > a.on {
+  color: #fff;
+  background-color: #b9d7ea;
+  cursor: pointer;
+  font-weight: normal;
+  font-size: 1.5rem;
+  display: block;
+  border-bottom: 2px solid #769fcd;
+}
+
 #nav .nav_list > li:hover {
   background-color: #b9d7ea;
   cursor: pointer;
-  font-weight: 600;
-  font-size: 16px
+  font-weight: normal;
+  font-size: 1.5rem;
+  display: block;
 }
 
 #nav .nav_list > li:first-child {
@@ -92,4 +101,20 @@
 #nav .nav_list > li:first-child > a {
   color: #fff;
   font-size: 1.7em;
+}
+
+#topBar {
+  float: right;
+  width: 88%;
+  height: 12vh;
+  border-bottom: 3px solid #769fcd;
+  box-sizing: border-box;
+  background-color: #fff;
+  line-height: 12vh;
+}
+
+#topBar > span {
+  font-size: 2em;
+  margin-left: 2%;
+  font-weight: 700;
 }

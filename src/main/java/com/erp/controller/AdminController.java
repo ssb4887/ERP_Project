@@ -16,20 +16,14 @@ import com.erp.service.AdminService;
 import com.erp.vo.Department;
 import com.erp.vo.Users;
 
-// 관리자 컨트롤러
+// (admin) 관리자 컨트롤러
 @Controller
 @RequestMapping(value="/admin/*")
 public class AdminController {
 	
 	@Inject
 	AdminService service;
-	
-//	List<Department> dept_list = null;
-//	public AdminController() throws Exception {
-//		dept_list = service.getDeptList();
-//	}
-	
-	
+
 	// -- admin page
 	// adminMain(관리자 메인)
 	@RequestMapping(value ="/adminMain", method = RequestMethod.GET)
@@ -48,19 +42,25 @@ public class AdminController {
 		return "admin/add_employee";
 	}
 
-	// search_dept(부서검색)
-	@RequestMapping(value ="/search_dept", method = RequestMethod.GET)
-	public String search_dept(Model model) throws Exception {
+	
+	// department(부서 관리)
+	@RequestMapping(value ="/department", method = RequestMethod.GET)
+	public String department(Model model) throws Exception {
 		
 		List<Department> dept_list = service.getDeptList();
 		model.addAttribute("dept_list", dept_list);
 		
-		return "admin/search_dept";
+		return "admin/department";
 	}
 	
-	// correct_auth(권한부여)
+	
+	// correct_auth(부서 	권한부여)
 	@RequestMapping(value ="/correct_auth", method = RequestMethod.GET)
-	public String correct_auth(Model model) {
+	public String correct_auth(Model model) throws Exception {
+		
+		List<Department> dept_list = service.getDeptList();
+		model.addAttribute("dept_list", dept_list);
+		
 		return "admin/correct_auth";
 	}
 	
@@ -82,14 +82,14 @@ public class AdminController {
 		return map;
 	}
 	
-	// search_employee(사원관리)
-	@RequestMapping(value ="/search_employee", method = RequestMethod.GET)
-	public String search_employee(Model model) throws Exception {
+	// employee(사원관리)
+	@RequestMapping(value ="/employee", method = RequestMethod.GET)
+	public String employee(Model model) throws Exception {
 		
 		List<Users> user_list = service.getUsersList();
 		model.addAttribute("user_list", user_list);
 		
-		return "admin/search_employee";
+		return "admin/employee";
 	}
 
 	
@@ -109,11 +109,13 @@ public class AdminController {
 	@RequestMapping(value = "/joinAction", method = RequestMethod.POST)
 	public String joinAction(Users users, String addr1, String addr2, String addr3) throws Exception {
 		
-		users.setUser_add(addr1 + " " + addr2 + " " + addr3);
+		users.setUser_addr(addr1 + " " + addr2 + " " + addr3);
 		
 		service.joinAction(users);
 		
-		return "redirect:/admin/add_employee";
+		
+		
+		return "redirect:/admin/employee";
 	}
 
 	
@@ -161,5 +163,38 @@ public class AdminController {
 		List<Department> list = service.searchDeptAction(dept_name);
 		
 		return list;  
+	}
+	
+	
+	
+	@RequestMapping(value = "/searchAuthTable", method = RequestMethod.POST)
+	public List<Department> searchAuthTable(Model model) throws Exception {
+		
+		List<Department> dept_list = service.getDeptList();
+		model.addAttribute("dept_list", dept_list);
+		
+		return dept_list;
+	}
+	
+	
+	@RequestMapping(value = "/auth_update", method = RequestMethod.POST)
+	@ResponseBody
+	public String auth_update(Department department) {
+		
+		// 0 : 성공
+		String result = "0";
+		
+		try {
+			
+			service.auth_updateAction(department);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			// 1 : 실패
+			result = "1";
+			
+		}
+		
+		return result;
 	}
 }

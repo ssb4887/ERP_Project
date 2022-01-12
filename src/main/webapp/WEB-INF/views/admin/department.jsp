@@ -23,10 +23,6 @@
 <!-- search_dept - JS파일 -->
 <%-- <script src="${path}/resources/js/search_dept.js"></script> --%>
 <script>
-/**
- *  사원 관리 페이지 JS
- */
-
 
 $(document).ready(function() {	
 		
@@ -35,7 +31,7 @@ $(document).ready(function() {
 		$('#updateBtn').hide();
 		
 		
-		// ajax 로 리스트 받아오기
+		// 부서이름을 검색하면 	ajax 로 리스트 받아오기
 		$('#searchNameBtn').click(function() {
 				var user_name = $('#dept_name').val();
 				$.ajax({ // ajax 는 데이터를 받아오는거 url받아오는거 아님 
@@ -119,7 +115,7 @@ $(document).ready(function() {
 					str += '</table>';
  					$('#deptListTable').append(str); 
 					
- 					// 수정이 완료되면
+ 					// 등록이 완료되면
  					$('#dept_num').val('');
 					$('#dept_name').val('');
 					$('#dept_tel').val('');
@@ -211,6 +207,7 @@ $(document).ready(function() {
 					$('#dept_add').show();
 					$('#dept_num').removeAttr('readonly');
 					// 빈문자열을 넣어줘야빈값을 넣어준다는 뜻이고 아무 것도 없이 	val() 면 거기 있는 값을 가져오는 것이다.	
+					alert(dept_name + ' (으)로 수정이 완료되었습니다.');
 				}
 			});
 			
@@ -302,39 +299,16 @@ $(document).ready(function() {
 </head>
 
 <body>
-	<div id="wrap">
-		<!-- nav 시작 -->
+<div id="wrap">
 
-		<!-- nav bar -->
-		<div id="nav">
-		
-			<!-- nav 상단부분 -->
-			<div class="nav_top">
-				<div class="profile"></div>
-				<span>admin</span>
-			</div>
+    <!-- 상단 bar -->
+    <div id="topBar">
+      <!-- 상단 제목 -->
+      <span>부서 관리</span>
+    </div>
 
-			<!-- nav 하단부분 -->
-			<div class="nav_bottom">
-				<ul class="nav_list">
-					<li><a href="adminMain">ERP_Project</a></li>
-					<li><a href="search_employee">사원관리</a></li>
-					<li><a href="add_employee">사원등록</a></li>
-					<li style="background-color: #b9d7ea; font-weight: bold; color: #fff; font-size: 20px">부서관리</li>
-					<li><a href="correct_auth">부서권한관리</a></li>
-				</ul>
-			</div>
-			
-		</div>
-
-		<!-- 상단 bar -->
-		<div id="topBar">
-			<!-- 상단 제목 -->
-			<h2>부서등록</h2>
-		</div>
-		
-	</div>
-	<!-- nav 끝 -->
+   	<!-- 유저 네비게이션 -->
+    <jsp:include page = "adminNav.jsp" />
 
 	<!-- contents 부분 -->
 	<div id="contents" style="float: right; width: 88%; height: 100%;">
@@ -458,7 +432,7 @@ $(document).ready(function() {
 							<div class="row" style="margin-top: 20%">
 								<div class="form-group col-sm-12 col-md-12 col-lg-12">
 									<button type="button" class="btn btn-success form-control" id = "updateBtn">수정</button>
-									<button type="button" class="btn btn-info form-control" id = "addBtn">등록</button>
+									<button type="button" class="btn btn-info form-control" id = "addBtn" style="background-color: #769fcd; border: 1px solid #769fcd">등록</button>
 								</div>
 							</div>
 							
@@ -471,6 +445,6 @@ $(document).ready(function() {
 			
 		</div>
 	</div>
-
+</div>
 </body>
 </html>

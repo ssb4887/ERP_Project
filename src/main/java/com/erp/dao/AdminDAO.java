@@ -12,7 +12,7 @@ public interface AdminDAO {
 	// 부서 리스트 들고오기
 	public List<Department> getDeptList() throws Exception;
 	
-	// 부서 객체 들고 오기
+	// 부서 객체 들고 오기(검색시)
 	public Department getDepartment(String dept_num) throws Exception;
 	
 	// 부서별 유저 카운트에 + 1
@@ -38,6 +38,12 @@ public interface AdminDAO {
 	public void deleteDept(Department department) throws Exception;
 	
 	// 부서 검색
-	public List<Department> serachDept(String dept_name) throws Exception;
+	public List<Department> searchDept(String dept_name) throws Exception;
+	
+	// 부서 권한 검색
+	public List<Department> searchAuthTable(Department department) throws Exception;
+	
+	// 부서 권한 수정
+	public void auth_update(Department department) throws Exception;
 	
 }

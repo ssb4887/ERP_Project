@@ -1,0 +1,97 @@
+-- 사용자
+CREATE TABLE USERS (
+	user_num    VARCHAR(20) 	PRIMARY KEY,
+	user_pw     VARCHAR(100) 	NOT NULL,
+	user_name   VARCHAR(20) 	NOT NULL,
+	dept_num    INT 		NOT NULL,
+	user_tel    VARCHAR(20),
+	user_email  VARCHAR(200),
+	user_addr   TEXT
+);
+
+
+
+-- 고객
+CREATE TABLE CLIENTS (
+	clients_num   VARCHAR(50) 	PRIMARY KEY,
+	clients_name  VARCHAR(100) 	NOT NULL,
+	clients_add   TEXT 		NOT NULL,
+	clients_tel   VARCHAR(20) 	NOT NULL,
+	user_num      VARCHAR(20) 	NOT NULL,
+	clients_note  TEXT
+);
+
+
+-- 영업
+CREATE TABLE SALES(
+	sales_num 	INT	 	PRIMARY KEY,	
+	user_name 	VARCHAR(20) 	NOT NULL,
+	user_num 	VARCHAR(100) 	NOT NULL,
+	clients_num 	VARCHAR(100) 	NOT NULL,
+	pro_num 	VARCHAR(100)	NOT NULL,
+	sales_count 	INT	 	NOT NULL,
+	sales_amount 	INT 		NOT NULL,
+	sales_date 	DATE	        NOT NULL,
+	sales_note 	TEXT
+);
+
+
+-- 제품
+CREATE TABLE PRODUCT(
+	pro_num 	VARCHAR(100) 	PRIMARY KEY,
+	pro_name 	VARCHAR(100) 	NOT NULL,
+	pro_color 	VARCHAR(50) 	NOT NULL,
+	pro_count 	INT,
+	pro_note 	TEXT
+);
+
+
+-- 발주
+CREATE TABLE ORDERS (
+	orders_num 	VARCHAR(100) 	PRIMARY KEY,
+	pro_num 	VARCHAR(100) 	NOT NULL,
+	orders_date 	DATE 		NOT NULL,
+	rec_date 	DATE 		NOT NULL,
+	orders_count 	INT 		NOT NULL,
+	orders_amount   INT 		NOT NULL,
+	supp_id 	VARCHAR(100) 	NOT NULL
+);
+
+
+-- 공급처
+CREATE TABLE SUPPLIER (
+	supp_id 	VARCHAR(100) 	PRIMARY KEY,
+    	supp_name	VARCHAR(50)	NOT NULL,
+	supp_add 	TEXT 		NOT NULL,
+	supp_tel 	VARCHAR(20),
+	user_num 	VARCHAR(20) 	NOT NULL,
+	user_tel 	VARCHAR(20),
+	supp_type 	VARCHAR(100) 	NOT NULL,
+	supp_note 	TEXT
+);
+
+
+-- 회계
+CREATE TABLE ACCOUNTING (
+	acc_num 	INT 		PRIMARY KEY AUTO_INCREMENT,
+	acc_ctg 	VARCHAR(100) 	NOT NULL,
+	acc_amount 	INT 		NOT NULL,
+	acc_payment 	VARCHAR(20)	NOT NULL,
+	acc_occdate 	DATE 		NOT NULL,
+	acc_location	VARCHAR(100)	NOT NULL,
+	acc_note 	TEXT
+);
+
+
+-- 권한부여
+CREATE TABLE AUTH_TABLE (
+	dept_num 	INT PRIMARY KEY,
+	auth_sales 	INT DEFAULT 0,
+	auth_salesList	INT DEFAULT 0,
+	auth_clients 	INT DEFAULT 0,
+	auth_orders 	INT DEFAULT 0,
+	auth_supplier 	INT DEFAULT 0,
+	auth_product	INT DEFAULT 0,
+	auth_accounting	INT DEFAULT -1
+);
+-- -- 0 : 검색 불가, 1 : 검색 가능, 2 : 수정 가능, 3 : 검색, 수정 가능
