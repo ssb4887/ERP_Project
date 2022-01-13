@@ -318,9 +318,9 @@ $(document).ready(function() {
 			<div class="row">
 			
 			<!-- 테이블 항목(왼쪽) -->
-				<div class="form-group col-sm-6 col-md-6 col-lg-6" class="table-responsive"	style="width: 700px; height: 70vh; margin-left: 1%;">
+				<div class="form-group col-sm-6 col-md-6 col-lg-6" class="table-responsive"	style="width: 700px; height: 50vh; margin-left: 1%;">
 					
-					<div class="jumbotron" style="background-color: #f7fbfc; border: 2px solid #b9d7ea;">
+					<div class="jumbotron" style="background-color: #f7fbfc; border: 2px solid #b9d7ea; height: 70vh;">
 					
 						<!-- 검색 폼, 테이블 -->
 
@@ -349,13 +349,13 @@ $(document).ready(function() {
 			
 			
 						<!-- 부서목록 제목 -->
-						<h4 style="text-align: center; font-size: 20px; margin-bottom: 10%">부서 목록</h4>
+						<h4 style="text-align: center; font-size: 20px; margin: 5% 0">부서 목록</h4>
 						
 						<!-- 테이블 항목 표시 -->
 						<div>
 							<table style="width: 100%; height: auto; text-align: center;" class="table borderless">
 								<tr>
-									<td style="width: 20%; text-align: center">선택</td>
+									<td style="width: 20%; text-align: center;">선택</td>
 									<td style="width: 30%; text-align: center">부서명</td>
 									<td style="width: 20%; text-align: center">부서코드</td>
 									<td style="width: 30%; text-align: center">부서전화번호</td>
@@ -392,9 +392,9 @@ $(document).ready(function() {
 
 
 				<!-- 등록, 수정 하는 화면(오른쪽) -->
-				<div class="form-group col-sm-6 col-md-6 col-lg-6" style="width: 430px; height: 100vh;">
+				<div class="form-group col-sm-6 col-md-6 col-lg-6" style="width: 20vw; height: 50vh;">
 			
-					<div class="jumbotron" style="width: 100%; height: 88vh; background-color: #f7fbfc; border: 2px solid #b9d7ea">
+					<div class="jumbotron" style="width: 100%; height: 70vh; background-color: #f7fbfc; border: 2px solid #b9d7ea">
 						<div class="form-group col-sm-12 col-md-12 col-lg-12">
 							<div style = "width: 100%; height: 49px"></div>
 						</div>

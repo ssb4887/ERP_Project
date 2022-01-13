@@ -224,102 +224,6 @@ $(document).ready(function(){
 
 });
 
-// 수정버튼 눌렀을때 그 줄에 해당하는 supp_id 값 가져오기
-function getSuppID(supp_id) {
-	
-	var supp_id = supp_id;
-	
-	$.ajax({
-		type: 'POST',
-		url: './getSearchSupplier',
-		data: {
-			supp_id: supp_id
-		} ,
-		dataType: "JSON",
-		// function(data)의 data는 컨트롤러에서 받아온 값이다!!!
-		success: function(data){
-			$('#supp_id_up').val(data.supp_id);
-			$('#supp_name_up').val(data.supp_name);
-			$('#supp_addr_up').val(data.supp_addr);
-			$('#supp_tel_up').val(data.supp_tel);
-			$('#user_num_up').val(data.user_num);
-			$('#user_tel_up').val(data.user_tel);
-			$('#supp_type_up').val(data.supp_type);
-			$('#supp_note_up').val(data.supp_note);
-		},
-		error: function(){
-			alert('수정 실패! 다시 시도 해주세요!');
-			location.reload();
-		}
-		
-			
-	});
-	
-}
-
-
-
-	// 수정 ajax 
-	function updateSupplier() {
-		
-	var supp_id 		= $('#supp_id_up').val();
-	var supp_name 	= $('#supp_name_up').val();
-	var supp_addr 	= $('#supp_addr_up').val();
-	var supp_tel 		= $('#supp_tel_up').val();
-	var user_num 	= $('#user_num_up').val();
-	var user_tel 		= $('#user_tel_up').val();
-	var supp_type 	= $('#supp_type_up').val();
-	var supp_note 	= $('#supp_note_up').val();
-
-	$.ajax({
-		url: './updateSupplier',
-		type: 'POST',
-		data: {
-			supp_name	: supp_name,
-			supp_addr 	: supp_addr,
-			supp_tel 		: supp_tel,
-			user_num 	: user_num,
-			user_tel 		: user_tel,
-			supp_type	: supp_type,
-			supp_note 	: supp_note,
-			supp_id		: supp_id
-		},
-		dataType: 'JSON',
-		success : function(data){
-	         $('#updateSuppModal').modal('hide');
-	         alert(supp_name + ' 공급처 수정 완료');
-				
-				$('#suppTableList').empty();
-				var str = '';
-				str +='<table  style="width: 85vw; height: auto; text-align: center" class="table table-hover" id="suppTableList" >';
-       				for(var i = 0; i < data.length; i++) {
-	       				str += '<tr>';
-		          				str += '<td style="width: 2vw; text-align: center; line-height: 30px">';
-		          				str += '<label><input type="checkbox" value="'+data[i].supp_id+'"/></label></td>';
-		          				str += '<td style="width: 6.5vw; text-align: center; line-height: 30px">'+data[i].supp_id+'</td>';
-		          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].supp_name+'</td>';
-		          				str += '<td style="width: 15vw; text-align: center; line-height: 30px">'+data[i].supp_addr+'</td>';
-		          				str += '<td style="width: 9vw; text-align: center; line-height: 30px">'+data[i].supp_tel+'</td>';
-		          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].user_num+'</td>';
-		          				str += '<td style="width: 9vw; text-align: center; line-height: 30px">'+data[i].user_tel+'</td>';
-		          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].supp_type+'</td>';
-		          				str += '<td style="width: 15vw; text-align: center; line-height: 30px">'+data[i].supp_note+'</td>';
-		          				str += '<td style="width: 4.5vw; text-align: center; line-height: 30px">';
-		          				str += '<button type="button" class="btn btn-info btn-block" id = "updateSuppBtn"';
-		          				str += 'onclick="getSuppID('+data[i].supp_id+')" data-toggle="modal" data-target="#updateSuppModal">수정</button></td>';
-	   					str += '</tr>';
-						}
-	  				str += '</table>';
-				$('#suppTableList').append(str); 
-				
-	    },
-		error : function() {
-			alert('수정 실패');
-		}
-		
-	});
-}	
-
 </script>
 
 </head>
@@ -668,6 +572,102 @@ function getSuppID(supp_id) {
 	</div>
 </div>
 <!-- 공급처 수정 모달  종료 -->
+<script>
 
+//수정버튼 눌렀을때 그 줄에 해당하는 supp_id 값 가져오기
+function getSuppID(supp_id) {
+	
+	var supp_id = supp_id;
+	
+	$.ajax({
+		type: 'POST',
+		url: './getSearchSupplier',
+		data: {
+			supp_id: supp_id
+		} ,
+		dataType: "JSON",
+		// function(data)의 data는 컨트롤러에서 받아온 값이다!!!
+		success: function(data){
+			$('#supp_id_up').val(data.supp_id);
+			$('#supp_name_up').val(data.supp_name);
+			$('#supp_addr_up').val(data.supp_addr);
+			$('#supp_tel_up').val(data.supp_tel);
+			$('#user_num_up').val(data.user_num);
+			$('#user_tel_up').val(data.user_tel);
+			$('#supp_type_up').val(data.supp_type);
+			$('#supp_note_up').val(data.supp_note);
+		},
+		error: function(){
+			alert('수정 실패! 다시 시도 해주세요!');
+			location.reload();
+		}
+			
+	});
+	
+}
+
+
+// 수정 ajax 
+function updateSupplier() {
+	
+	var supp_id 		= $('#supp_id_up').val();
+	var supp_name 	= $('#supp_name_up').val();
+	var supp_addr 	= $('#supp_addr_up').val();
+	var supp_tel 		= $('#supp_tel_up').val();
+	var user_num 	= $('#user_num_up').val();
+	var user_tel 		= $('#user_tel_up').val();
+	var supp_type 	= $('#supp_type_up').val();
+	var supp_note 	= $('#supp_note_up').val();
+	
+	$.ajax({
+		url: './updateSupplier',
+		type: 'POST',
+		data: {
+			supp_name	: supp_name,
+			supp_addr 	: supp_addr,
+			supp_tel 		: supp_tel,
+			user_num 	: user_num,
+			user_tel 		: user_tel,
+			supp_type	: supp_type,
+			supp_note 	: supp_note,
+			supp_id		: supp_id
+		},
+		dataType: 'JSON',
+		success : function(data){
+	         $('#updateSuppModal').modal('hide');
+	         alert(supp_name + ' 공급처 수정 완료');
+				
+				$('#suppTableList').empty();
+				var str = '';
+				str +='<table  style="width: 85vw; height: auto; text-align: center" class="table table-hover" id="suppTableList" >';
+	   				for(var i = 0; i < data.length; i++) {
+	       				str += '<tr>';
+		          				str += '<td style="width: 2vw; text-align: center; line-height: 30px">';
+		          				str += '<label><input type="checkbox" value="'+data[i].supp_id+'"/></label></td>';
+		          				str += '<td style="width: 6.5vw; text-align: center; line-height: 30px">'+data[i].supp_id+'</td>';
+		          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].supp_name+'</td>';
+		          				str += '<td style="width: 15vw; text-align: center; line-height: 30px">'+data[i].supp_addr+'</td>';
+		          				str += '<td style="width: 9vw; text-align: center; line-height: 30px">'+data[i].supp_tel+'</td>';
+		          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].user_num+'</td>';
+		          				str += '<td style="width: 9vw; text-align: center; line-height: 30px">'+data[i].user_tel+'</td>';
+		          				str += '<td style="width: 8vw; text-align: center; line-height: 30px">'+data[i].supp_type+'</td>';
+		          				str += '<td style="width: 15vw; text-align: center; line-height: 30px">'+data[i].supp_note+'</td>';
+		          				str += '<td style="width: 4.5vw; text-align: center; line-height: 30px">';
+		          				str += '<button type="button" class="btn btn-info btn-block" id = "updateSuppBtn"';
+		          				str += 'onclick="getSuppID('+data[i].supp_id+')" data-toggle="modal" data-target="#updateSuppModal">수정</button></td>';
+	   					str += '</tr>';
+						}
+	  				str += '</table>';
+				$('#suppTableList').append(str); 
+				
+	    },
+		error : function() {
+			alert('수정 실패');
+		}
+		
+	});
+}	
+
+</script>
 </body>
 </html>

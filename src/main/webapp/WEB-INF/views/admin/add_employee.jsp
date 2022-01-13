@@ -54,6 +54,7 @@ $(document).ready(function(){
 						$('#user_num').val(data.user_num);	
 						$('#dept_num').val(data.dept_num);	
 						$('#dept_name').val(data.dept_name);	
+						$('#searchDeptModal').modal('hide');
 				}
 			})
 		});

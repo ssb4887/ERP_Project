@@ -27,4 +27,28 @@ public class AccServiceImpl implements AccService {
 		return dao.getAccList();
 	}
 
+	@Override
+	public List<Accounting> searchAccPayMent(String acc_payment) throws Exception {
+		
+		acc_payment  = "%" + acc_payment + "%";
+		
+		return dao.searchAccPayMent(acc_payment);
+	}
+
+	@Override
+	public List<Accounting> searchAccWriter(String acc_writer) throws Exception {
+		
+		acc_writer = "%" + acc_writer + "%";
+		
+		return dao.searchAccWriter(acc_writer);
+	}
+
+	@Override
+	public List<Accounting> searchAccDate(String acc_occdate) throws Exception {
+		
+		acc_occdate = "%" + acc_occdate + "%";
+		
+		return dao.searchAccDate(acc_occdate);
+	}
+
 }

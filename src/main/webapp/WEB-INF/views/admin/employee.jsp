@@ -76,7 +76,7 @@ $(document).ready(function(){
     <div id="contents" style="float: right; width: 88%; height: 100%">
       <div>
         <!-- 검색 폼 -->
-        <div style="width: 500px">
+        <div style="width: 30vw">
           <form style="margin: 5% 0 0 4%">
             <!-- 검색어 입력 -->
             <div class="row">
@@ -123,7 +123,7 @@ $(document).ready(function(){
         <div
           class="table-responsive"
           style="
-            width: 1070px;
+            width: 70vw;
             height: auto;
             background-color: #f7fbfc;
             margin-left: 1%;
@@ -134,7 +134,7 @@ $(document).ready(function(){
         >
           <table
             style="
-              width: 1050px;
+              width: 69vw;
               height: auto;
               margin: 0 -2% 0 0;
               text-align: center;
@@ -157,7 +157,7 @@ $(document).ready(function(){
         <div
           class="table-responsive"
           style="
-            width: 1070px;
+            width: 70vw;
             height: 600px;
             margin-left: 1%;
             overflow: scroll;
@@ -173,7 +173,7 @@ $(document).ready(function(){
 	              <td style="width: 10%; text-align: center">${user.dept_num }</td>
 	              <td style="width: 15%; text-align: center">${user.user_tel }</td>
 	              <td style="width: 15%; text-align: center">${user.user_email }</td>
-	              <td style="width: 30%; text-align: center">${user.user_add }</td>
+	              <td style="width: 30%; text-align: center">${user.user_addr }</td>
 	            </tr>
 	            </c:forEach>
 	            

@@ -28,7 +28,7 @@
 				WHERE 	dept_num = #{dept_num}
 		</select>
 		
-		
+		<!-- 부서 번호 기준으로 부서 검색 -->
 		<select id = "getDepartment" resultType = "Department">
 				SELECT 	*
 				FROM 		DEPARTMENT
@@ -202,6 +202,7 @@
 					#{acc_occdate},
 					#{acc_amount},
 					#{acc_location},
+					#{acc_writer},
 					#{acc_note}
 			);
 		</insert>
@@ -211,6 +212,31 @@
 		<select id="getAccList" resultType="Accounting">
 			SELECT *
 			FROM ACCOUNTING
+			ORDER BY acc_occdate DESC, acc_payment DESC
+		</select>
+		
+		<!-- 회계 단위로 검색 -->
+		<select id="searchAccPayMent" resultType="Accounting">
+			SELECT *
+			FROM ACCOUNTING
+			WHERE acc_payment LIKE #{acc_payment}
+			ORDER BY acc_occdate DESC, acc_payment DESC
+		</select>
+		
+		<!-- 회계 작성자로 검색 -->
+		<select id="searchAccWriter" resultType="Accounting">
+			SELECT *
+			FROM ACCOUNTING
+			WHERE acc_writer LIKE #{acc_writer}
+			ORDER BY acc_occdate DESC, acc_payment DESC
+		</select>
+		
+		<!-- 회계 작성일로 검색 -->
+		<select id="searchAccDate" resultType="Accounting">
+			SELECT *
+			FROM ACCOUNTING
+			WHERE acc_occdate LIKE #{acc_occdate}
+			ORDER BY acc_occdate DESC, acc_payment DESC
 		</select>
 		
 </mapper>
