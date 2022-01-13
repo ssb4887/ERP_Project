@@ -29,17 +29,18 @@
           <!-- 오른쪽 텍스트 영역 -->
           <div class="profile">
             <div class="pofile_user">
-       		  <span class="user_num">${user.user_num}</span>
-       		  <span class="user_name">${user.user_name} 님</span>
+       		  <span class="user_num">${users.user_num}</span>
+       		  <span class="user_name">${users.user_name}</span>
        		</div>
+       		          	
+          	<c:if test="${users.user_num eq 'admin'}">
+          		<a class="mypage_btn" href="../admin/adminMain">관리자 페이지</a>
+          	</c:if>
        		
-          	<c:if test="${user.user_num != admin}">
+          	<c:if test="${users.user_num ne 'admin'}">
           		<a class="mypage_btn" href="myPage">마이페이지</a>
           	</c:if>
-          	
-          	<c:if test="${user.user_num == admin}">
-          		<a class="mypage_btn" href="adminMain">관리자 페이지</a>
-          	</c:if>
+
           	
           	<a class="logout_btn" href="/logout">로그아웃</a>
           </div>
@@ -63,13 +64,12 @@
       <script>
       $(document).ready(function () {
       	var url = window.location.pathname;
-      	if(url == '/userMain') $('#mainNavItem').addClass('on');
-      	else if(url == 'user/product') $('#productNavItem').addClass('on');
-      	else if(url == 'user/salesList') $('#salesListNavItem').addClass('on');
-      	else if(url == 'user/supplier') $('#supplierNavItem').addClass('on');
-      	else if(url == 'user/clients') $('#clientsNavItem').addClass('on');
-      	else if(url == 'user/orders') $('#ordersNavItem').addClass('on');
-      	else if(url == 'user/accounting') $('#accountingNavItem').addClass('on');
+      	if(url == '/user/product') $('#productNavItem').addClass('on');
+      	else if(url == '/user/salesList') $('#salesListNavItem').addClass('on');
+      	else if(url == '/user/supplier') $('#supplierNavItem').addClass('on');
+      	else if(url == '/user/clients') $('#clientsNavItem').addClass('on');
+      	else if(url == '/user/orders') $('#ordersNavItem').addClass('on');
+      	else if(url == '/user/accounting') $('#accountingNavItem').addClass('on');
       });
       </script>
 </html>

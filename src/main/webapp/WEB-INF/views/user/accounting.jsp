@@ -7,27 +7,148 @@
 <meta charset="UTF-8">
 <title>ERP Project</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
-    <!-- 기본 CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/reset.css" />
-    <!-- 네비 CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/erpNav.css" />
-    <!-- 회계 CSS -->
-    <link rel="stylesheet" href="${path}/resources/css/account.css" />
-    <!-- 부트스트랩 CSS -->
-
-    <!-- 제이쿼리  -->
-    <script src="${path}/resources/js/jquery.js"></script>
-	<script>
-      $(document).ready(function () {
-        $("input:checkbox").on("click", function () {
-          if ($(this).prop("checked")) {
-            $(this).parent().parent().addClass("selected");
-          } else {
-            $(this).parent().parent().removeClass("selected");
-          }
-        });
-      });
-    </script>
+	<!-- 제이쿼리  -->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<!-- 기본 CSS -->
+	<link rel="stylesheet" href="${path}/resources/css/reset.css" />
+	<!-- 회계 CSS -->
+	<link rel="stylesheet" href="${path}/resources/css/account.css" />
+	<!-- 네비 CSS -->
+	<link rel="stylesheet" href="${path}/resources/css/erpNav.css" />
+	<!-- 부트스트랩 CSS -->
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap/bootstrap.css" />
+	<link rel="stylesheet" href="${path}/resources/css/bootstrap/custom.css" />
+	<!-- 부트스트랩 JS -->
+	<script src="${path}/resources/js/bootstrap.js"></script>
+	<!-- AJAX -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery.min.js" charset="UTF-8"></script>
+<script>
+     $(document).ready(function () {
+       $("input:checkbox").on("click", function () {
+         if ($(this).prop("checked")) {
+           $(this).parent().parent().addClass("selected");
+         } else {
+           $(this).parent().parent().removeClass("selected");
+         }
+       });
+       
+       // 회계단위 검색
+       $('#search_payment_btn').click(function(){
+	       	var acc_payment = $('#acc_payment_search').val();
+	       	
+	       	$.ajax({
+	       		type: 'POST',
+	       		url: './searchAccPayMent',
+	       		data: {
+	       			acc_payment : acc_payment
+	       		} ,
+	       		dataType : 'JSON',
+	       		success : function(data) {
+		 			var str = '';
+		 			$('#acc_list').empty();
+		 			
+		 			str += '<div id="acc_list">';
+		 			for(var i = 0; i < data.length; i++) {
+			 			str += '<div class="table_con" style="height: 25px">';
+			 			str += '<div style="width: 2%; text-align: center;">';
+			 			str += '<input style=" margin-top: 2px;" type="checkbox" name="check" value="check" /></div>';
+		 				str += '<div style="width: 4%; text-align: center">'+data[i].acc_payment+'</div>';
+		 				str += '<div style="width: 9%; text-align: center">'+data[i].acc_ctg+'</div>';
+		 				str += '<div style="width: 12%; text-align: center">'+data[i].acc_occdate+'</div>';
+		 				str += '<div style="width: 14%; text-align: center">'+data[i].acc_amount+'</div>';
+		 				str += '<div style="width: 10%; text-align: center">'+data[i].acc_location+'</div>';
+		 				str += '<div style="width: 10%; text-align: center">'+data[i].acc_writer+'</div>';
+		 				str += '<div style="width: 39%; text-align: center">'+data[i].acc_note+'</div></div>';
+	 				}
+	 				str += '</div>';
+	 				$('#acc_list').append(str);
+	       		}
+	       		
+	       		
+	       	});// ajax 종료
+       	
+       	
+       });
+       
+       
+       // 회계 작성자 검색 
+       $('#search_writer_btn').click(function(){
+	       	var acc_writer = $('#acc_writer_search').val();
+	       	
+	       	$.ajax({
+	       		type: 'POST',
+	       		url: './searchAccWriter',
+	       		data: {
+	       			acc_writer : acc_writer
+	       		} ,
+	       		dataType : 'JSON',
+	       		success : function(data) {
+		 			var str = '';
+		 			$('#acc_list').empty();
+		 			
+		 			str += '<div id="acc_list">';
+		 			for(var i = 0; i < data.length; i++) {
+			 			str += '<div class="table_con" style="height: 25px">';
+			 			str += '<div style="width: 2%; text-align: center;">';
+			 			str += '<input style=" margin-top: 2px;" type="checkbox" name="check" value="check" /></div>';
+		 				str += '<div style="width: 4%; text-align: center">'+data[i].acc_payment+'</div>';
+		 				str += '<div style="width: 9%; text-align: center">'+data[i].acc_ctg+'</div>';
+		 				str += '<div style="width: 12%; text-align: center">'+data[i].acc_occdate+'</div>';
+		 				str += '<div style="width: 14%; text-align: center">'+data[i].acc_amount+'</div>';
+		 				str += '<div style="width: 10%; text-align: center">'+data[i].acc_location+'</div>';
+		 				str += '<div style="width: 10%; text-align: center">'+data[i].acc_writer+'</div>';
+		 				str += '<div style="width: 39%; text-align: center">'+data[i].acc_note+'</div></div>';
+	 				}
+	 				str += '</div>';
+	 				$('#acc_list').append(str);
+	       		}
+	       		
+	       		
+	       	});// ajax 종료
+       	
+       });
+       
+       
+       // 회계 작성일 검색
+       $('#search_writeDate_btn').click(function(){
+	       	var acc_occdate = $('#writeDate').val();
+	       	
+	       	$.ajax({
+	       		type: 'POST',
+	       		url: './searchAccDate',
+	       		data: {
+	       			acc_occdate : acc_occdate
+	       		} ,
+	       		dataType : 'JSON',
+	       		success : function(data) {
+	       			alert(acc_occdate);
+		 			var str = '';
+		 			$('#acc_list').empty();
+		 			
+		 			str += '<div id="acc_list">';
+		 			for(var i = 0; i < data.length; i++) {
+			 			str += '<div class="table_con" style="height: 25px">';
+			 			str += '<div style="width: 2%; text-align: center;">';
+			 			str += '<input style=" margin-top: 2px;" type="checkbox" name="check" value="check" /></div>';
+		 				str += '<div style="width: 4%; text-align: center">'+data[i].acc_payment+'</div>';
+		 				str += '<div style="width: 9%; text-align: center">'+data[i].acc_ctg+'</div>';
+		 				str += '<div style="width: 12%; text-align: center">'+data[i].acc_occdate+'</div>';
+		 				str += '<div style="width: 14%; text-align: center">'+data[i].acc_amount+'</div>';
+		 				str += '<div style="width: 10%; text-align: center">'+data[i].acc_location+'</div>';
+		 				str += '<div style="width: 10%; text-align: center">'+data[i].acc_writer+'</div>';
+		 				str += '<div style="width: 39%; text-align: center">'+data[i].acc_note+'</div></div>';
+	 				}
+	 				str += '</div>';
+	 				$('#acc_list').append(str);
+	       		}
+	       		
+	       		
+	       	});// ajax 종료
+       	
+       });
+       
+     });
+</script>
 
 </head>
 <body>
@@ -36,7 +157,7 @@
      <!-- 상단 bar -->
      <div id="topBar">
        <!-- 상단 제목 -->
-       <span>고객 관리</span>
+       <span>회계</span>
      </div>
     
     <!-- 유저 네비게이션 -->
@@ -55,21 +176,22 @@
 					<li>
 						<ul id="add_con">
 							<li>회계단위</li>
-							<li class="acc_search"><input type="text" /></li>
-							<li class="search_btn"><a>검색</a></li>
+							<li class="acc_search"><input type="text" id="acc_payment_search" placeholder="차변 / 대변"/></li>
+							<li class="search_btn"><button type="button" id="search_payment_btn">검색</button></li>
 						</ul>
 					</li>
 					<li>
 						<ul id="add_con">
 							<li>작성자</li>
-							<li class="acc_search"><input type="text" /></li>
-							<li class="search_btn"><a>검색</a></li>
+							<li class="acc_search"><input type="text" id="acc_writer_search"/></li>
+							<li class="search_btn"><button type="button" id="search_writer_btn">검색</button></li>
 						</ul>
 					</li>
 					<li>
 						<ul id="add_conday">
 							<li>작성일자</li>
-							<li class="acc_searchday"><input type="date" /></li>
+							<li class="acc_searchday"><input type="date" id = "writeDate"/></li>
+							<li class="search_btn"><button type="button" id="search_writeDate_btn" style="margin: 0 0 3% 15%">검색</button></li>
 						</ul>
 					</li>
 				</ul>
@@ -97,21 +219,22 @@
 						
 						<div class="read_all"
 							style="width: 100%; height: 51vh; overflow-y: scroll;">
-									
-									<c:forEach var="acc" items ='${acc_list}'>
-										<div class="table_con" style="height: 25px">
-											<div style="width: 2%; text-align: center;">
-												<input style=" margin-top: 2px;" type="checkbox" name="check" value="check" />
+									<div id="acc_list">
+										<c:forEach var="acc" items ='${acc_list}'>
+											<div class="table_con" style="height: 25px">
+												<div style="width: 2%; text-align: center;">
+													<input style=" margin-top: 2px;" type="checkbox" name="check" value="check" />
+												</div>
+												<div style="width: 4%; text-align: center">${acc.acc_payment}</div>
+												<div style="width: 9%; text-align: center">${acc.acc_ctg}</div>
+												<div style="width: 12%; text-align: center">${acc.acc_occdate}</div>
+												<div style="width: 14%; text-align: center">${acc.acc_amount}</div>
+												<div style="width: 10%; text-align: center">${acc.acc_location}</div>
+												<div style="width: 10%; text-align: center">${acc.acc_writer}</div>
+												<div style="width: 39%; text-align: center">${acc.acc_note}</div>
 											</div>
-											<div style="width: 4%; text-align: center"></div>
-											<div style="width: 9%; text-align: center"></div>
-											<div style="width: 12%; text-align: center"></div>
-											<div style="width: 14%; text-align: center"></div>
-											<div style="width: 10%; text-align: center"></div>
-											<div style="width: 10%; text-align: center"></div>
-											<div style="width: 39%; text-align: center"></div>
-										</div>
-									</c:forEach>
+										</c:forEach>
+									</div>
 							</div>
 							
 						
@@ -138,7 +261,7 @@
 								<input onkeydown="if (event.keyCode == 13) acc_occdate.focus();" type="text" id="acc_ctg" />
 							</div>
 							<div style="width: 12%; text-align: center;">
-								<input onkeydown="if (event.keyCode == 13) acc_amount.focus();" type="text" id="acc_occdate"/>
+								<input onkeydown="if (event.keyCode == 13) acc_amount.focus();" type="text" id="acc_occdate" placeholder ="형식 : yyyy-mm-dd"/>
 							</div>
 							<div style="width: 14%; text-align: center;">
 								<input onkeydown="if (event.keyCode == 13) acc_location.focus();" type="text" id="acc_amount"/>
@@ -164,13 +287,6 @@
 					 			var acc_location		= $('#acc_location').val();
 					 			var acc_note 			= $('#acc_note').val();
 					 			
-					 			alert(acc_payment);
-					 			alert(acc_ctg);
-					 			alert(acc_occdate);
-					 			alert(acc_amount);
-					 			alert(acc_location);
-					 			alert(acc_note);
-					 			
 					 			$.ajax({
 					 				url: "./addAccAction",
 					 				type: 'POST',
@@ -182,25 +298,45 @@
 					 					acc_location 	: acc_location,
 					 					acc_note 		: acc_note
 					 				},
-					 				dataType: 'text',
-					 				success:function(){
-					 					alert('성공');
+					 				dataType: 'JSON',
+					 				success:function(data){
+					 					alert('회계 등록 성공');
+					 					
 							 			$('#acc_payment').val('');
 							 			$('#acc_ctg').val('');
 							 			$('#acc_occdate').val('');
 							 			$('#acc_amount').val('');
 							 			$('#acc_location').val('');
 							 			$('#acc_note').val('');
+							 			
+							 			var str = '';
+							 			$('#acc_list').empty();
+							 			
+							 			str += '<div id="acc_list">';
+							 			for(var i = 0; i < data.length; i++) {
+								 			str += '<div class="table_con" style="height: 25px">';
+								 			str += '<div style="width: 2%; text-align: center;">';
+								 			str += '<input style=" margin-top: 2px;" type="checkbox" name="check" value="check" /></div>';
+							 				str += '<div style="width: 4%; text-align: center">'+data[i].acc_payment+'</div>';
+							 				str += '<div style="width: 9%; text-align: center">'+data[i].acc_ctg+'</div>';
+							 				str += '<div style="width: 12%; text-align: center">'+data[i].acc_occdate+'</div>';
+							 				str += '<div style="width: 14%; text-align: center">'+data[i].acc_amount+'</div>';
+							 				str += '<div style="width: 10%; text-align: center">'+data[i].acc_location+'</div>';
+							 				str += '<div style="width: 10%; text-align: center">'+data[i].acc_writer+'</div>';
+							 				str += '<div style="width: 39%; text-align: center">'+data[i].acc_note+'</div></div>';
+						 				}
+						 				str += '</div>';
+						 				$('#acc_list').append(str);
 					 				},
 					 				error:function(){
 					 					alert('error');
+					 					location.reload();
 					 				}
 					 			});
 					            
 					        }
 					}
 				</script>
-				</form>
 				
 			</div>
 		</div>

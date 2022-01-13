@@ -36,7 +36,12 @@ public class UsersController {
 	
 	// userMain(유저 메인)	
 	@RequestMapping(value ="/userMain", method = RequestMethod.GET)
-	public String main(Model model) {
+	public String main(Model model, HttpSession session) {
+		
+		Users user = (Users) session.getAttribute("users");
+		
+		model.addAttribute("users", user);
+		
 		return "user/userMain";
 	}
 
@@ -110,7 +115,7 @@ public class UsersController {
 		
 		List<Supplier> supp_list = supp_service.getSupplierList();
 		model.addAttribute("supp_list", supp_list);
-		model.addAttribute("user", user);
+		model.addAttribute("users", user);
 		
 		return "user/supplier";
 	}
@@ -175,10 +180,14 @@ public class UsersController {
 	// --- accounting
 	// accounting (회계)	
 	@RequestMapping(value ="/accounting", method = RequestMethod.GET)
-	public String accounting(Model model) throws Exception {
+	public String accounting(Model model, HttpSession session) throws Exception {
+		
+		Users sion = (Users) session.getAttribute("users");
+		
 		
 		List<Accounting> acc_list = acc_service.getAccList();
 		model.addAttribute("acc_list", acc_list);
+		model.addAttribute("users", sion);
 		
 		return "user/accounting";
 	}
@@ -186,11 +195,36 @@ public class UsersController {
 	// 회계 데이터 등록	
 	@RequestMapping(value ="/addAccAction", method = RequestMethod.POST)
 	@ResponseBody
-	public String addAccAction(Accounting accounting) throws Exception {
+	public List<Accounting> addAccAction(Accounting accounting, HttpSession session, Model model) throws Exception {
+		
+		Users sion = (Users) session.getAttribute("users");
+		
+		accounting.setAcc_writer(sion.getUser_name());
 		
 		acc_service.addAccAction(accounting);
 		
-		return "0";
+		return acc_service.getAccList();
+	}
+	
+	@RequestMapping(value="/searchAccPayMent", method  = RequestMethod.POST)
+	@ResponseBody
+	public List<Accounting> searchAccPayMent(String acc_payment) throws Exception {
+		
+		return acc_service.searchAccPayMent(acc_payment);
+	}
+	
+	@RequestMapping(value="/searchAccWriter", method  = RequestMethod.POST)
+	@ResponseBody
+	public List<Accounting> searchAccWriter(String acc_writer) throws Exception {
+
+		return acc_service.searchAccWriter(acc_writer);
+	}
+	
+	@RequestMapping(value="/searchAccDate", method  = RequestMethod.POST)
+	@ResponseBody
+	public List<Accounting> searchAccDate(String acc_occdate) throws Exception {
+		
+		return acc_service.searchAccDate(acc_occdate);
 	}
 	
 }

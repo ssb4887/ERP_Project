@@ -67,14 +67,15 @@ a:hover, a:active {text-decoration: none; color:#fff; background-color:#B9D7EA;}
   outline: 1.5px solid #769fcd;
   border-radius: 3px;
 }
-.search_btn{
+.search_btn button{
 	display: inline-block;
   width: 50px;
-  height: 20px;
+  height: 27px;
   background-color: #f7fbfc;
-  border-radius: 5px;
+  border-radius: 3px;
   text-align: center;
-  cursor: pointer;
+  font-size: 0.9em;
+  border: 1px solid #769fcd;
 }
 
 #add_conday {

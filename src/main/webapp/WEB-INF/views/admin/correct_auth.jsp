@@ -286,9 +286,9 @@
 			<div class="row">
 			
 			<!-- 테이블 항목(왼쪽) -->
-				<div class="form-group col-sm-6 col-md-6 col-lg-6" class="table-responsive"	style="width: 700px; height: 70vh; margin-left: 1%;">
+				<div class="form-group col-sm-6 col-md-6 col-lg-6" class="table-responsive"	style="margin-left: 1%;">
 					
-					<div class="jumbotron" style="background-color: #f7fbfc; border: 2px solid #b9d7ea;">
+					<div class="jumbotron" style="background-color: #f7fbfc; border: 2px solid #b9d7ea; height: 70vh">
 					
 						<!-- 검색 폼, 테이블 -->
 
@@ -313,7 +313,7 @@
 			
 			
 						<!-- 부서목록 제목 -->
-						<h4 style="text-align: center; font-size: 20px; margin-top: 10%">부서 목록</h4>
+						<h4 style="text-align: center; font-size: 20px; margin: 7% 0 3% 0">부서 목록</h4>
 						
 						<!-- 테이블 항목 표시 -->
 						<div>
@@ -356,7 +356,7 @@
 				<!-- 수정 하는 화면(오른쪽) -->
 				<div class="form-group col-sm-6 col-md-6 col-lg-6" style="width: 430px; height: 100vh;">
 			
-					<div class="jumbotron" style="width: 100%; height: 88vh; background-color: #f7fbfc; border: 2px solid #b9d7ea">
+					<div class="jumbotron" style="width: 100%; height: 70vh; background-color: #f7fbfc; border: 2px solid #b9d7ea">
 												
 							<div class="row">
 							

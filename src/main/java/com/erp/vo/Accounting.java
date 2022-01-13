@@ -7,17 +7,19 @@ public class Accounting {
 	private String acc_payment;
 	private String acc_occdate;
 	private String acc_location;
+	private String acc_writer;
 	private String acc_note;
 	
 	public Accounting() {}
 
 	public Accounting(int acc_num, String acc_ctg, int acc_amount, String acc_payment, String acc_occdate,
-			String acc_location, String acc_note) {
+			String acc_location, String acc_writer, String acc_note) {
 		this.acc_num = acc_num;
 		this.acc_ctg = acc_ctg;
 		this.acc_amount = acc_amount;
 		this.acc_payment = acc_payment;
 		this.acc_occdate = acc_occdate;
+		this.acc_writer = acc_writer;
 		this.acc_location = acc_location;
 		this.acc_note = acc_note;
 	}
@@ -60,6 +62,14 @@ public class Accounting {
 
 	public void setAcc_occdate(String acc_occdate) {
 		this.acc_occdate = acc_occdate;
+	}
+
+	public String getAcc_writer() {
+		return acc_writer;
+	}
+
+	public void setAcc_writer(String acc_writer) {
+		this.acc_writer = acc_writer;
 	}
 
 	public String getAcc_location() {
