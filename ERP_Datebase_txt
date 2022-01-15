@@ -15,7 +15,7 @@ CREATE TABLE USERS (
 CREATE TABLE CLIENTS (
 	clients_num   VARCHAR(50) 	PRIMARY KEY,
 	clients_name  VARCHAR(100) 	NOT NULL,
-	clients_add   TEXT 		NOT NULL,
+	clients_addr  TEXT 		NOT NULL,
 	clients_tel   VARCHAR(20) 	NOT NULL,
 	user_num      VARCHAR(20) 	NOT NULL,
 	clients_note  TEXT
@@ -62,7 +62,7 @@ CREATE TABLE ORDERS (
 CREATE TABLE SUPPLIER (
 	supp_id 	VARCHAR(100) 	PRIMARY KEY,
     	supp_name	VARCHAR(50)	NOT NULL,
-	supp_add 	TEXT 		NOT NULL,
+	supp_addr 	TEXT 		NOT NULL,
 	supp_tel 	VARCHAR(20),
 	user_num 	VARCHAR(20) 	NOT NULL,
 	user_tel 	VARCHAR(20),
