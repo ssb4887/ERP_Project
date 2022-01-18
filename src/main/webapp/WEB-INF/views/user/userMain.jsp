@@ -41,7 +41,7 @@
 	<div id="contents"  style="float: right; width: 88vw; height: 88vh;background-color: #C3C3C3;">
 	<!-- 내용적는 부분 -->
            <div class="page_btn">
-               <div class="box_btn" OnClick="location.href ='pw_check'"><img src="${path}/resources/images/profile_white.png" alt=""></div>
+               <div class="box_btn" OnClick="location.href ='myPage'"><img src="${path}/resources/images/profile_white.png" alt=""></div>
                <span>마이페이지</span>
            </div>
            <div class="page_btn">
